@@ -38,14 +38,6 @@ internal static class MemePreservationPatches
             return false;
         }
 
-        List<Precept> unavoidable = working.foundation.GetPreceptsToRemoveFromMemeChanges(working.memes, proposed).ToList();
-        if (FluidIdeologyOverhaulMod.Settings.PreservationMode == PreservationMode.StrictPreservation && unavoidable.Count > 0)
-        {
-            string removed = unavoidable.Where(p => p.def.visible).Select(p => p.LabelCap.ToString()).ToLineList("  - ");
-            Messages.Message("FIO_StrictRejected".Translate(removed), MessageTypeDefOf.RejectInput, historical: false);
-            return false;
-        }
-
         if (!session.TrySelect(reformObject))
         {
             return false;
@@ -68,10 +60,7 @@ internal static class MemePreservationPatches
 
         try
         {
-            if (FluidIdeologyOverhaulMod.Settings.PreservationMode == PreservationMode.PreserveWherePossible)
-            {
-                RestoreCompatiblePrecepts(__state.Snapshot, __state.Session.Working);
-            }
+            RestoreCompatiblePrecepts(__state.Snapshot, __state.Session.Working);
         }
         finally
         {

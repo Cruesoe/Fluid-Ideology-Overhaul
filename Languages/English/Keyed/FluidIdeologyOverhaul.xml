@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <FIO_Title>Fluid Ideology Overhaul</FIO_Title>
-  <FIO_PreservationMode>Preservation mode</FIO_PreservationMode>
-  <FIO_ModeVanilla>Vanilla cascades</FIO_ModeVanilla>
-  <FIO_ModePreserve>Preserve where possible</FIO_ModePreserve>
-  <FIO_ModeStrict>Strict preservation</FIO_ModeStrict>
-  <FIO_ModeVanillaTip>Use RimWorld's normal meme consequence handling.</FIO_ModeVanillaTip>
-  <FIO_ModePreserveTip>Restore existing ideology content when it remains valid after a meme change.</FIO_ModePreserveTip>
-  <FIO_ModeStrictTip>Reject a meme change if RimWorld reports that existing precepts must be removed.</FIO_ModeStrictTip>
-  <FIO_DevelopmentDiagnostics>Development diagnostics</FIO_DevelopmentDiagnostics>
-  <FIO_DevelopmentDiagnosticsTip>Log reform actions, locks, preservation decisions and commit guards for testing.</FIO_DevelopmentDiagnosticsTip>
+  <FIO_TechSourceHighestResearched>Use highest researched tech level instead of actual tech level</FIO_TechSourceHighestResearched>
+  <FIO_TechSourceHighestResearchedTip>When enabled, the highest tech level among completed research projects is used instead of the colony's actual tech level. This is the default, since the colony's actual tech level is normally fixed for the whole playthrough. If Node Research is active, the actual tech level is used by default instead, since that mod makes actual tech level the more meaningful measure.</FIO_TechSourceHighestResearchedTip>
+  <FIO_CurrentTechLevel>Current tech level: {0}</FIO_CurrentTechLevel>
+  <FIO_TechLevelUnavailable>unavailable outside an active game</FIO_TechLevelUnavailable>
   <FIO_ActionAdd>add</FIO_ActionAdd>
   <FIO_ActionRemove>remove</FIO_ActionRemove>
   <FIO_ObjectMeme>Meme: {0} {1}</FIO_ObjectMeme>
@@ -21,7 +16,6 @@
   <FIO_ObjectBuilding>Building: {0}</FIO_ObjectBuilding>
   <FIO_AnotherObjectLocked>This reform is locked to {0}. Reset or confirm it before changing another mechanical object.</FIO_AnotherObjectLocked>
   <FIO_OneMemeAtATime>Adding and removing memes are separate reforms. Choose exactly one meme change.</FIO_OneMemeAtATime>
-  <FIO_StrictRejected>Strict preservation rejected this meme change because it requires removing:\n\n{0}</FIO_StrictRejected>
   <FIO_NoObjectSelected>No mechanical reform object selected. Cosmetic edits remain free.</FIO_NoObjectSelected>
   <FIO_SelectedObject>Selected reform object: {0}. Other deliberate objects are locked.</FIO_SelectedObject>
   <FIO_LockedMemeTip>This reform is locked to {0}. This meme cannot be added or removed until the reform is reset or confirmed.</FIO_LockedMemeTip>

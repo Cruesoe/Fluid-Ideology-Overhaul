@@ -18,7 +18,7 @@ Commit must be idempotent and must call the vanilla reform/development path exac
 
 ## Preservation strategy
 
-Preserve compatible existing content first. Any change caused by meme validity rules must be classified as required, optional or invalid. Optional newly unlocked content must not be granted automatically. Strict Preservation should reject a meme command before it damages the working state when unavoidable destructive consequences are detected.
+Preserve compatible existing content first. Any change caused by meme validity rules must be classified as required, optional or invalid. Optional newly unlocked content must not be granted automatically. This is fixed mod behavior, not a player-configurable mode.
 
 The installed Persistent Precepts Workshop payload (`2944765939`) confirms the relevant content categories but contains only a compiled assembly and no licence file. Do not copy or decompile its code. Check the upstream repository licence before adapting any published technique, and document provenance for anything reused.
 
@@ -48,8 +48,7 @@ The installed Persistent Precepts Workshop payload (`2944765939`) confirms the r
 - Rituals use their stable precept ID, allowing several fields on one ritual without unlocking another ritual.
 - Roles use their role definition identity; apparel requirements are mechanical while titles are cosmetic.
 - Relic material is mechanical. Building visual style and precept names are cosmetic.
-- Preserve Where Possible uses RimWorld's compatibility checks and restores removed opening precepts only when the new meme set still accepts them.
-- Strict Preservation rejects a meme change when RimWorld reports required precept removals before applying the cascade.
+- Preservation always runs in Preserve Where Possible behavior: it uses RimWorld's compatibility checks and restores removed opening precepts only when the new meme set still accepts them. There is no Vanilla Cascades or Strict Preservation mode.
 
 ## Implementation sequence
 
@@ -75,7 +74,6 @@ The installed Persistent Precepts Workshop payload (`2944765939`) confirms the r
 | Confirm, then trigger close/save callbacks | The working ideology commits once and vanilla development is consumed once. |
 | Open a Fixed ideology editor | Behavior remains entirely vanilla. |
 | Add the mod to an existing save | No existing ideology is rerolled, removed or validated on load. |
-| Remove a destructive meme in Strict Preservation | The action is rejected without mutating the working state. |
 
 ## Repository setup choices
 

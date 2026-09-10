@@ -3,7 +3,7 @@
 ## Setup
 
 1. Enable Development mode and start or load a colony whose player ideoligion is Fluid.
-2. In Mod settings, leave Preservation mode on Preserve Where Possible and enable Development diagnostics.
+2. In Mod settings, enable Development diagnostics. Preservation always runs in Preserve Where Possible behavior; there is no mode to set.
 3. Use Debug actions, Ideoligion, Max development points.
 4. Open the Ideoligions tab and begin a reform.
 
@@ -21,9 +21,7 @@
 1. Add one meme. Verify that the review lists the meme as primary and any automatic precept changes as consequences.
 2. Remove one meme. Verify that unrelated rituals, roles, buildings, relics, weapons, venerated animals and appearance choices retain their IDs and configuration when still valid.
 3. Attempt a direct remove-and-add replacement. It must be rejected as two reforms.
-4. Repeat a destructive removal in Strict Preservation. It must be rejected before the working ideology is mutated.
-5. Repeat in Vanilla Cascades. RimWorld's unmodified consequence handling should run.
-6. Test a meme change at the vanilla meme cap and confirm behavior remains vanilla.
+4. Test a meme change at the vanilla meme cap and confirm behavior remains vanilla.
 
 ## Review and commitment tests
 

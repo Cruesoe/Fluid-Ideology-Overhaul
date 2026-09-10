@@ -1,0 +1,38 @@
+using RimWorld;
+using Verse;
+
+namespace FluidIdeologyOverhaul.Tech;
+
+public static class TechLevelService
+{
+    public static TechLevel? EffectiveTechLevel()
+    {
+        if (Current.Game == null)
+        {
+            return null;
+        }
+
+        return FluidIdeologyOverhaulMod.Settings.TechLevelSource == TechLevelSource.HighestResearched
+            ? HighestResearchedTechLevel()
+            : ActualTechLevel();
+    }
+
+    public static TechLevel? ActualTechLevel()
+    {
+        return Faction.OfPlayer?.def.techLevel;
+    }
+
+    public static TechLevel HighestResearchedTechLevel()
+    {
+        TechLevel highest = TechLevel.Undefined;
+        foreach (ResearchProjectDef project in DefDatabase<ResearchProjectDef>.AllDefsListForReading)
+        {
+            if (project.techLevel > highest && project.IsFinished)
+            {
+                highest = project.techLevel;
+            }
+        }
+
+        return highest == TechLevel.Undefined ? TechLevel.Neolithic : highest;
+    }
+}

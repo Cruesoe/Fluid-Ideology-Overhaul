@@ -51,11 +51,9 @@ internal static class MutationScope
 
 internal static class Diagnostics
 {
+    [System.Diagnostics.Conditional("DEBUG")]
     public static void Message(string message)
     {
-        if (FluidIdeologyOverhaulMod.Settings?.DevelopmentDiagnostics == true)
-        {
-            Verse.Log.Message("[Fluid Ideology Overhaul] " + message);
-        }
+        Verse.Log.Message("[Fluid Ideology Overhaul] " + message);
     }
 }

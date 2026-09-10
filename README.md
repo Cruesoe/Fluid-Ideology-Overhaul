@@ -9,7 +9,7 @@ Phase 1 is implemented:
 - cosmetic changes remain free inside an earned reform;
 - reset fully restores the opening snapshot;
 - meme cascades are separated from deliberate player intent;
-- Vanilla Cascades, Preserve Where Possible and Strict Preservation modes;
+- automatic precept preservation across meme cascades (fixed behavior, not configurable);
 - a review screen before every final commitment;
 - exactly-once commitment through RimWorld's normal development tracker.
 

@@ -1,4 +1,6 @@
+using FluidIdeologyOverhaul.Tech;
 using HarmonyLib;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -25,20 +27,16 @@ public sealed class FluidIdeologyOverhaulMod : Mod
     {
         Listing_Standard listing = new Listing_Standard();
         listing.Begin(inRect);
-        listing.Label("FIO_PreservationMode".Translate());
-
-        Rect modeRect = listing.GetRect(34f);
-        if (Widgets.ButtonText(modeRect, Settings.PreservationMode.Label()))
-        {
-            Settings.PreservationMode = Settings.PreservationMode.Next();
-        }
-        TooltipHandler.TipRegion(modeRect, Settings.PreservationMode.Description());
-
-        listing.Gap();
+        bool useHighestResearched = Settings.TechLevelSource == TechLevelSource.HighestResearched;
         listing.CheckboxLabeled(
-            "FIO_DevelopmentDiagnostics".Translate(),
-            ref Settings.DevelopmentDiagnostics,
-            "FIO_DevelopmentDiagnosticsTip".Translate());
+            "FIO_TechSourceHighestResearched".Translate(),
+            ref useHighestResearched,
+            "FIO_TechSourceHighestResearchedTip".Translate());
+        Settings.TechLevelSource = useHighestResearched ? TechLevelSource.HighestResearched : TechLevelSource.ActualTechLevel;
+
+        TechLevel? effectiveTechLevel = TechLevelService.EffectiveTechLevel();
+        listing.Label("FIO_CurrentTechLevel".Translate(
+            effectiveTechLevel.HasValue ? effectiveTechLevel.Value.ToString() : "FIO_TechLevelUnavailable".Translate()));
         listing.End();
     }
 }
