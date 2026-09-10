@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <FIO_Title>Fluid Ideology Overhaul</FIO_Title>
+  <FIO_Title>Ideology Reformation</FIO_Title>
+  <FIO_FluidModeDescription>Begin with one belief, then reshape your ideoligion one tradition at a time as the colony grows and discovers new ideas.</FIO_FluidModeDescription>
   <FIO_TechSourceHighestResearched>Use highest researched tech level instead of actual tech level</FIO_TechSourceHighestResearched>
   <FIO_TechSourceHighestResearchedTip>When enabled, the highest tech level among completed research projects is used instead of the colony's actual tech level. This is the default, since the colony's actual tech level is normally fixed for the whole playthrough. If Node Research is active, the actual tech level is used by default instead, since that mod makes actual tech level the more meaningful measure.</FIO_TechSourceHighestResearchedTip>
   <FIO_CurrentTechLevel>Current tech level: {0}</FIO_CurrentTechLevel>
@@ -35,5 +36,6 @@
   <FIO_LeaderTitlesChanged>Leader titles edited</FIO_LeaderTitlesChanged>
   <FIO_StylesChanged>Ideology styles edited</FIO_StylesChanged>
   <FIO_PreceptNameChanged>Renamed {0} to {1}</FIO_PreceptNameChanged>
-  <FIO_LetterTextReformIdeo>You have enough development points to reform {0}!\n\nFluid Ideology Overhaul permits one deliberate mechanical ideology object in this reform. You may add or remove one meme, change the structure, change one precept, or edit one ritual or role. Multiple mechanical fields belonging to that same ritual or role may be edited together.\n\nNames, descriptions, colours, icons, style categories and other presentation-only changes are free while this earned reform is open. Automatic consequences required by the selected meme do not count as additional deliberate changes and will be shown separately.\n\nBefore development points are spent, you will receive a review of the primary change and its consequences. You may return to editing or reset all changes without spending the reform.\n\nTo begin, open this ideoligion in the Ideoligions tab.</FIO_LetterTextReformIdeo>
+  <FIO_LetterTextReformIdeo>You have enough development points to reform {0}!\n\nIdeology Reformation permits one deliberate mechanical ideology object in this reform. You may add or remove one meme, change the structure, change one precept, or edit one ritual or role. Multiple mechanical fields belonging to that same ritual or role may be edited together.\n\nNames, descriptions, colours, icons, style categories and other presentation-only changes are free while this earned reform is open. Automatic consequences required by the selected meme do not count as additional deliberate changes and will be shown separately.\n\nBefore development points are spent, you will receive a review of the primary change and its consequences. You may return to editing or reset all changes without spending the reform.\n\nTo begin, open this ideoligion in the Ideoligions tab.{1}</FIO_LetterTextReformIdeo>
+  <FIO_NewlyAvailableMemes>\n\nNewly available memes since your last reform notice: {0}.</FIO_NewlyAvailableMemes>
 </LanguageData>

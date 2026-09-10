@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-  <name>Fluid Ideology Overhaul</name>
+  <name>Ideology Reformation</name>
   <author>Cruesoe</author>
-  <packageId>cruesoe.fluidideologyoverhaul</packageId>
+  <packageId>cruesoe.ideologyreformation</packageId>
   <modVersion IgnoreIfNoMatchingField="True">260910</modVersion>
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
-  <description>Make Fluid ideoligion reform gradual, deliberate and reversible.
+  <description>Reform Fluid ideoligions one meaningful change at a time.
 
-Each reform is limited to one deliberate mechanical ideology object, while multiple fields of that ritual or role can be edited together. Cosmetic edits remain free inside an earned reform. Meme consequences are separated from the player's deliberate action, and existing valid content is preserved according to the selected preservation mode.
-
-Every reform ends with a review screen. Reset or cancellation leaves the real ideology unchanged, and confirmation uses RimWorld's normal development-point behavior.
+Each reform allows one mechanical change while keeping cosmetic edits free. Review the result before committing, preserve valid existing precepts, and unlock selected memes through research.
 
 Requires Ideology and Harmony.</description>
   <modDependencies>
@@ -26,8 +24,4 @@ Requires Ideology and Harmony.</description>
       <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
     </li>
   </modDependencies>
-  <loadAfter>
-    <li>Ludeon.RimWorld.Ideology</li>
-    <li>brrainz.harmony</li>
-  </loadAfter>
 </ModMetaData>

@@ -6,9 +6,9 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
-using FluidIdeologyOverhaul.Reform;
+using IdeologyReformation.Reform;
 
-namespace FluidIdeologyOverhaul.Patches;
+namespace IdeologyReformation.Patches;
 
 [HarmonyPatch(typeof(Dialog_ReformIdeo))]
 internal static class ReformDialogPatches

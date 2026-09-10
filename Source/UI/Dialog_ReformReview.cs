@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using FluidIdeologyOverhaul.Reform;
+using IdeologyReformation.Reform;
 using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace FluidIdeologyOverhaul.UI;
+namespace IdeologyReformation.UI;
 
 internal sealed class Dialog_ReformReview : Window
 {

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/MemeDef[defName="VME_HardcoreIndustrialism"]</xpath>
+    <value><li Class="IdeologyReformation.Restrictions.MemeAvailabilityExtension"><requiredResearch><li>Electricity</li></requiredResearch></li></value>
+  </Operation>
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/MemeDef[defName="VME_Scrapper"]</xpath>
+    <value><li Class="IdeologyReformation.Restrictions.MemeAvailabilityExtension"><requiredResearch><li>Machining</li></requiredResearch></li></value>
+  </Operation>
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/MemeDef[defName="VME_CityBuilders"]</xpath>
+    <value><li Class="IdeologyReformation.Restrictions.MemeAvailabilityExtension"><requiredResearch><li>ComplexFurniture</li></requiredResearch></li></value>
+  </Operation>
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/MemeDef[defName="VME_Healthcare"]</xpath>
+    <value><li Class="IdeologyReformation.Restrictions.MemeAvailabilityExtension"><requiredResearch><li>HospitalBed</li></requiredResearch></li></value>
+  </Operation>
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/MemeDef[defName="VME_Progressive" or defName="VME_MechanoidSupremacy"]</xpath>
+    <value><li Class="IdeologyReformation.Restrictions.MemeAvailabilityExtension"><requiredResearch><li>Fabrication</li></requiredResearch></li></value>
+  </Operation>
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/MemeDef[defName="VME_Fleshcrafters"]</xpath>
+    <value><li Class="IdeologyReformation.Restrictions.MemeAvailabilityExtension"><requiredResearch><li>Biosculpting</li></requiredResearch></li></value>
+  </Operation>
+</Patch>

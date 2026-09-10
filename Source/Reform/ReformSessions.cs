@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using RimWorld;
 
-namespace FluidIdeologyOverhaul.Reform;
+namespace IdeologyReformation.Reform;
 
 internal static class ReformSessions
 {
@@ -54,6 +54,6 @@ internal static class Diagnostics
     [System.Diagnostics.Conditional("DEBUG")]
     public static void Message(string message)
     {
-        Verse.Log.Message("[Fluid Ideology Overhaul] " + message);
+        Verse.Log.Message("[Ideology Reformation] " + message);
     }
 }

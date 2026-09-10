@@ -1,6 +1,6 @@
 using Verse;
 
-namespace FluidIdeologyOverhaul;
+namespace IdeologyReformation;
 
 public enum TechLevelSource
 {
@@ -8,7 +8,7 @@ public enum TechLevelSource
     HighestResearched
 }
 
-public sealed class FluidIdeologyOverhaulSettings : ModSettings
+public sealed class IdeologyReformationSettings : ModSettings
 {
     private const string NodeResearchPackageId = "ferny.noderesearch";
 

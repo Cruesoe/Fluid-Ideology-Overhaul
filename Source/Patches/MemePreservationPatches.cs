@@ -4,9 +4,9 @@ using System.Reflection;
 using HarmonyLib;
 using RimWorld;
 using Verse;
-using FluidIdeologyOverhaul.Reform;
+using IdeologyReformation.Reform;
 
-namespace FluidIdeologyOverhaul.Patches;
+namespace IdeologyReformation.Patches;
 
 [HarmonyPatch(typeof(Dialog_ChooseMemes), "DoAcceptChanges")]
 internal static class MemePreservationPatches

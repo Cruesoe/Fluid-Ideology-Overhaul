@@ -2,10 +2,10 @@ using System;
 using HarmonyLib;
 using RimWorld;
 using Verse;
-using FluidIdeologyOverhaul.Reform;
-using FluidIdeologyOverhaul.UI;
+using IdeologyReformation.Reform;
+using IdeologyReformation.UI;
 
-namespace FluidIdeologyOverhaul.Patches;
+namespace IdeologyReformation.Patches;
 
 [HarmonyPatch(typeof(IdeoDevelopmentUtility), nameof(IdeoDevelopmentUtility.ConfirmChangesToIdeo))]
 internal static class ReformReviewPatch

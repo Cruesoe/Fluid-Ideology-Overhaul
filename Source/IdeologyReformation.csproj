@@ -5,8 +5,8 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <Deterministic>true</Deterministic>
-    <RootNamespace>FluidIdeologyOverhaul</RootNamespace>
-    <AssemblyName>FluidIdeologyOverhaul</AssemblyName>
+    <RootNamespace>IdeologyReformation</RootNamespace>
+    <AssemblyName>IdeologyReformation</AssemblyName>
     <Nullable>enable</Nullable>
     <RimWorldRoot Condition="'$(RimWorldRoot)' == ''">$(RIMWORLD_DIR)</RimWorldRoot>
     <RimWorldRoot Condition="'$(RimWorldRoot)' == ''">C:\Program Files (x86)\Steam\steamapps\common\RimWorld</RimWorldRoot>

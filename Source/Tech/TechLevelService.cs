@@ -1,7 +1,7 @@
 using RimWorld;
 using Verse;
 
-namespace FluidIdeologyOverhaul.Tech;
+namespace IdeologyReformation.Tech;
 
 public static class TechLevelService
 {
@@ -12,7 +12,7 @@ public static class TechLevelService
             return null;
         }
 
-        return FluidIdeologyOverhaulMod.Settings.TechLevelSource == TechLevelSource.HighestResearched
+        return IdeologyReformationMod.Settings.TechLevelSource == TechLevelSource.HighestResearched
             ? HighestResearchedTechLevel()
             : ActualTechLevel();
     }

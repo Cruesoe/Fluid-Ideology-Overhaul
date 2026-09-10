@@ -3,7 +3,7 @@ using System.Linq;
 using RimWorld;
 using Verse;
 
-namespace FluidIdeologyOverhaul.Reform;
+namespace IdeologyReformation.Reform;
 
 internal sealed class ReformSummary
 {

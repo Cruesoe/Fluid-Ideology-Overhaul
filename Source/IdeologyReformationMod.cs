@@ -1,23 +1,25 @@
-using FluidIdeologyOverhaul.Tech;
+using IdeologyReformation.Tech;
+using IdeologyReformation.Patches;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace FluidIdeologyOverhaul;
+namespace IdeologyReformation;
 
-public sealed class FluidIdeologyOverhaulMod : Mod
+public sealed class IdeologyReformationMod : Mod
 {
-    public const string HarmonyId = "cruesoe.fluidideologyoverhaul";
+    public const string HarmonyId = "cruesoe.ideologyreformation";
 
-    public static FluidIdeologyOverhaulSettings Settings { get; private set; } = null!;
+    public static IdeologyReformationSettings Settings { get; private set; } = null!;
 
-    public FluidIdeologyOverhaulMod(ModContentPack content) : base(content)
+    public IdeologyReformationMod(ModContentPack content) : base(content)
     {
-        Settings = GetSettings<FluidIdeologyOverhaulSettings>();
+        Settings = GetSettings<IdeologyReformationSettings>();
         new Harmony(HarmonyId).PatchAll();
+        FluidIdeologyDescriptionPatch.ApplyAfterLoading();
 #if DEBUG
-        Log.Message("[Fluid Ideology Overhaul] Phase 1 loaded.");
+        Log.Message("[Ideology Reformation] Phase 1 loaded.");
 #endif
     }
 

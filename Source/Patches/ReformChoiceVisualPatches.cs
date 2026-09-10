@@ -5,9 +5,9 @@ using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 using Verse;
-using FluidIdeologyOverhaul.Reform;
+using IdeologyReformation.Reform;
 
-namespace FluidIdeologyOverhaul.Patches;
+namespace IdeologyReformation.Patches;
 
 /// <summary>
 /// Vanilla greys whole meme sections when another category is selected, but keeps

@@ -25,7 +25,7 @@
 
 ## Review and commitment tests
 
-1. Complete a one-precept reform. The Fluid Ideology Overhaul review must appear even when vanilla has no special warning.
+1. Complete a one-precept reform. The Ideology Reformation review must appear even when vanilla has no special warning.
 2. Choose Go back, alter the same object, and review again.
 3. Confirm a reform which also produces a vanilla lost-precept warning. Cancel that warning, return to the editor and confirm again; the mod review must be shown again.
 4. Complete final confirmation. Development points must reset and reform count must increase exactly once.
@@ -33,7 +33,7 @@
 
 ## Scope tests
 
-1. View or dev-edit a Fixed ideoligion. Fluid Ideology Overhaul must not create a reform session or change its behavior.
+1. View or dev-edit a Fixed ideoligion. Ideology Reformation must not create a reform session or change its behavior.
 2. Add the mod to a save containing established ideologies. Loading the save must not validate, regenerate or remove existing content.
 3. Test with at least one mod-added ritual, role and precept before Phase 2 work begins.
 
