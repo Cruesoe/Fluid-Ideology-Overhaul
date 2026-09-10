@@ -1,4 +1,5 @@
 using RimWorld;
+using System.Linq;
 using Verse;
 
 namespace FluidIdeologyOverhaul.Reform;
@@ -44,6 +45,22 @@ internal sealed class ReformSession
         return false;
     }
 
+    public bool CanConfigureMemeConsequence(Precept precept)
+    {
+        if (SelectedObject?.Kind != ReformObjectKind.Meme || precept.def.issue == null)
+        {
+            return false;
+        }
+
+        // A meme may introduce an issue or replace an existing issue's value to meet
+        // its requirements. Choosing the value for that changed issue configures the
+        // meme consequence rather than selecting a second deliberate reform object.
+        var before = Original.PreceptsListForReading.Where(p => p.def.issue == precept.def.issue).ToList();
+        var after = Working.PreceptsListForReading.Where(p => p.def.issue == precept.def.issue).ToList();
+        return before.Count != after.Count
+            || before.Any(old => !after.Any(current => current.Id == old.Id && current.def == old.def));
+    }
+
     public void Reset()
     {
         Original.CopyTo(Working);
@@ -65,4 +82,3 @@ internal sealed class ReformSession
         return true;
     }
 }
-

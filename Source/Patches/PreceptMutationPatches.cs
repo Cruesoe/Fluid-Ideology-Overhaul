@@ -57,6 +57,14 @@ internal static class PreceptMutationPatches
             return true;
         }
 
+        if (session.CanConfigureMemeConsequence(precept))
+        {
+            MutationScope.EnterPreceptMutation();
+            enteredScope = true;
+            Diagnostics.Message($"Allowed configuration of meme consequence {precept.def.defName}.");
+            return true;
+        }
+
         if (!session.TrySelect(ReformObject.ForPrecept(precept)))
         {
             return false;

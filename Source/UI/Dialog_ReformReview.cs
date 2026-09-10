@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using FluidIdeologyOverhaul.Reform;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -37,18 +39,15 @@ internal sealed class Dialog_ReformReview : Window
 
         Widgets.BeginScrollView(outRect, ref scrollPosition, viewRect);
         float curY = 0f;
-        DrawSection(ref curY, viewWidth, "FIO_PrimaryChange".Translate(), summary.PrimaryText);
-        DrawSection(ref curY, viewWidth, "FIO_Consequences".Translate(), summary.ConsequenceText);
-        DrawSection(ref curY, viewWidth, "FIO_Preserved".Translate(), summary.Preserved);
+        DrawSection(ref curY, viewWidth, "FIO_PrimaryChange".Translate(), NoneIfEmpty(summary.PrimaryMemeCards),
+            memeCards: summary.PrimaryMemeCards);
+        DrawSection(ref curY, viewWidth, "FIO_Consequences".Translate(), NoneIfEmpty(summary.PreceptCards),
+            preceptCards: summary.PreceptCards);
         if (summary.CosmeticChanges.Count > 0)
         {
             DrawSection(ref curY, viewWidth, "FIO_CosmeticChanges".Translate(), summary.CosmeticText);
         }
 
-        curY += 6f;
-        GUI.color = ColorLibrary.Yellow;
-        DrawBody(ref curY, viewWidth, "FIO_ConsumesReform".Translate());
-        GUI.color = Color.white;
         Widgets.EndScrollView();
 
         Rect backRect = new Rect(inRect.x, inRect.yMax - 40f, 180f, 40f);
@@ -66,36 +65,135 @@ internal sealed class Dialog_ReformReview : Window
 
     private float CalculateContentHeight(float width)
     {
-        float height = SectionHeight(width, summary.PrimaryText)
-            + SectionHeight(width, summary.ConsequenceText)
-            + SectionHeight(width, summary.Preserved);
+        float height = SectionHeight(width, NoneIfEmpty(summary.PrimaryMemeCards), memeCards: summary.PrimaryMemeCards)
+            + SectionHeight(width, NoneIfEmpty(summary.PreceptCards), preceptCards: summary.PreceptCards);
         if (summary.CosmeticChanges.Count > 0)
         {
             height += SectionHeight(width, summary.CosmeticText);
         }
 
-        Text.Font = GameFont.Small;
-        height += 6f + Text.CalcHeight("FIO_ConsumesReform".Translate(), width) + 12f;
         return height;
     }
 
-    private static float SectionHeight(float width, string body)
+    private static string NoneIfEmpty<T>(IReadOnlyCollection<T> cards)
+    {
+        return cards.Count == 0 ? "None".Translate() : string.Empty;
+    }
+
+    private static float SectionHeight(
+        float width,
+        string body,
+        IReadOnlyCollection<Precept>? preceptCards = null,
+        IReadOnlyCollection<MemeDef>? memeCards = null)
     {
         Text.Font = GameFont.Medium;
         float headingHeight = Text.CalcHeight("Ag", width);
         Text.Font = GameFont.Small;
-        float bodyHeight = Text.CalcHeight(body, width);
-        return headingHeight + 6f + bodyHeight + SectionGap;
+        bool hasCards = (preceptCards?.Count ?? 0) > 0 || (memeCards?.Count ?? 0) > 0;
+        float bodyHeight = hasCards ? 0f : Text.CalcHeight(body, width);
+        return headingHeight + 6f
+            + PreceptCardsHeight(width, preceptCards)
+            + MemeCardsHeight(width, memeCards)
+            + bodyHeight + SectionGap;
     }
 
-    private static void DrawSection(ref float curY, float width, string heading, string body)
+    private static void DrawSection(
+        ref float curY,
+        float width,
+        string heading,
+        string body,
+        IReadOnlyList<Precept>? preceptCards = null,
+        IReadOnlyList<MemeDef>? memeCards = null)
     {
         Text.Font = GameFont.Medium;
         float headingHeight = Text.CalcHeight(heading, width);
         Widgets.Label(new Rect(0f, curY, width, headingHeight), heading);
         curY += headingHeight + 6f;
-        DrawBody(ref curY, width, body);
+        DrawPreceptCards(ref curY, width, preceptCards);
+        DrawMemeCards(ref curY, width, memeCards);
+        if ((preceptCards?.Count ?? 0) == 0 && (memeCards?.Count ?? 0) == 0)
+        {
+            DrawBody(ref curY, width, body);
+        }
         curY += SectionGap;
+    }
+
+    private static float PreceptCardsHeight(float width, IReadOnlyCollection<Precept>? cards)
+    {
+        if (cards == null || cards.Count == 0)
+        {
+            return 0f;
+        }
+
+        int columns = Mathf.Max(1, Mathf.FloorToInt((width + 8f) / (IdeoUIUtility.PreceptBoxSize.x + 8f)));
+        int rows = Mathf.CeilToInt((float)cards.Count / columns);
+        return rows * IdeoUIUtility.PreceptBoxSize.y + (rows - 1) * 8f + 10f;
+    }
+
+    private static void DrawPreceptCards(ref float curY, float width, IReadOnlyList<Precept>? cards)
+    {
+        if (cards == null || cards.Count == 0)
+        {
+            return;
+        }
+
+        Text.Font = GameFont.Small;
+        int columns = Mathf.Max(1, Mathf.FloorToInt((width + 8f) / (IdeoUIUtility.PreceptBoxSize.x + 8f)));
+        float rowWidth = Mathf.Min(columns, cards.Count) * IdeoUIUtility.PreceptBoxSize.x
+            + (Mathf.Min(columns, cards.Count) - 1) * 8f;
+        float startX = (width - rowWidth) / 2f;
+        for (int i = 0; i < cards.Count; i++)
+        {
+            int column = i % columns;
+            int row = i / columns;
+            Rect cardRect = new Rect(
+                startX + column * (IdeoUIUtility.PreceptBoxSize.x + 8f),
+                curY + row * (IdeoUIUtility.PreceptBoxSize.y + 8f),
+                IdeoUIUtility.PreceptBoxSize.x,
+                IdeoUIUtility.PreceptBoxSize.y);
+            cards[i].DrawPreceptBox(cardRect, IdeoEditMode.None);
+        }
+
+        curY += PreceptCardsHeight(width, cards);
+    }
+
+    private static float MemeCardsHeight(float width, IReadOnlyCollection<MemeDef>? cards)
+    {
+        if (cards == null || cards.Count == 0)
+        {
+            return 0f;
+        }
+
+        int columns = Mathf.Max(1, Mathf.FloorToInt((width + 8f) / (IdeoUIUtility.MemeBoxSize.x + 8f)));
+        int rows = Mathf.CeilToInt((float)cards.Count / columns);
+        return rows * IdeoUIUtility.MemeBoxSize.y + (rows - 1) * 8f + 10f;
+    }
+
+    private static void DrawMemeCards(ref float curY, float width, IReadOnlyList<MemeDef>? cards)
+    {
+        if (cards == null || cards.Count == 0)
+        {
+            return;
+        }
+
+        Text.Font = GameFont.Small;
+        int columns = Mathf.Max(1, Mathf.FloorToInt((width + 8f) / (IdeoUIUtility.MemeBoxSize.x + 8f)));
+        float rowWidth = Mathf.Min(columns, cards.Count) * IdeoUIUtility.MemeBoxSize.x
+            + (Mathf.Min(columns, cards.Count) - 1) * 8f;
+        float startX = (width - rowWidth) / 2f;
+        for (int i = 0; i < cards.Count; i++)
+        {
+            int column = i % columns;
+            int row = i / columns;
+            Rect cardRect = new Rect(
+                startX + column * (IdeoUIUtility.MemeBoxSize.x + 8f),
+                curY + row * (IdeoUIUtility.MemeBoxSize.y + 8f),
+                IdeoUIUtility.MemeBoxSize.x,
+                IdeoUIUtility.MemeBoxSize.y);
+            IdeoUIUtility.DoMeme(cardRect, cards[i]);
+        }
+
+        curY += MemeCardsHeight(width, cards);
     }
 
     private static void DrawBody(ref float curY, float width, string body)

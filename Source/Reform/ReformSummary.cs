@@ -10,7 +10,10 @@ internal sealed class ReformSummary
     public string Primary { get; private set; } = string.Empty;
     public List<string> PrimaryChanges { get; } = new();
     public List<string> Consequences { get; } = new();
-    public string Preserved { get; private set; } = string.Empty;
+    public List<MemeDef> PrimaryMemeCards { get; } = new();
+    public List<Precept> PrimaryPreceptCards { get; } = new();
+    public List<Precept> ConsequencePreceptCards { get; } = new();
+    public List<Precept> PreceptCards { get; } = new();
     public List<string> CosmeticChanges { get; } = new();
 
     public string PrimaryText => JoinSection(Primary, PrimaryChanges);
@@ -35,20 +38,105 @@ internal sealed class ReformSummary
 
         AddPrimaryDetails(summary, session, originalPrecepts, workingPrecepts, added, removed);
 
+        AddPrimaryMemeCard(summary, session);
+        AddPrimaryPreceptCards(summary, session.SelectedObject, originalPrecepts, workingPrecepts, added, removed);
+
         foreach (Precept precept in added.Where(p => !IsPrimaryPrecept(session.SelectedObject, p)))
         {
             summary.Consequences.Add("FIO_AddedItem".Translate(Describe(precept)));
+            summary.ConsequencePreceptCards.Add(precept);
         }
 
         foreach (Precept precept in removed.Where(p => !IsPrimaryPrecept(session.SelectedObject, p)))
         {
             summary.Consequences.Add("FIO_RemovedItem".Translate(Describe(precept)));
+            summary.ConsequencePreceptCards.Add(precept);
         }
 
-        int preserved = originalPrecepts.Count(p => workingIds.Contains(p.Id));
-        summary.Preserved = "FIO_PreservedCount".Translate(preserved, originalPrecepts.Count);
+        BuildPreceptCards(summary, workingPrecepts);
         AddCosmeticDetails(summary, session.Original, session.Working);
         return summary;
+    }
+
+    private static void BuildPreceptCards(ReformSummary summary, List<Precept> workingPrecepts)
+    {
+        HashSet<string> seen = new();
+        foreach (Precept candidate in summary.PrimaryPreceptCards.Concat(summary.ConsequencePreceptCards))
+        {
+            IssueDef? issue = candidate.def.issue;
+            string key = issue != null && !issue.allowMultiplePrecepts
+                ? $"issue:{issue.defName}"
+                : $"precept:{candidate.Id}";
+            if (!seen.Add(key))
+            {
+                continue;
+            }
+
+            // A replacement produces both an added and removed card. For a
+            // single-value issue, display only the value that survives the reform.
+            Precept card = issue != null && !issue.allowMultiplePrecepts
+                ? workingPrecepts.LastOrDefault(precept => precept.def.issue == issue) ?? candidate
+                : candidate;
+            summary.PreceptCards.Add(card);
+        }
+    }
+
+    private static void AddPrimaryMemeCard(ReformSummary summary, ReformSession session)
+    {
+        ReformObject? selected = session.SelectedObject;
+        if (selected?.Kind == ReformObjectKind.Structure)
+        {
+            MemeDef? structure = session.Working.StructureMeme ?? session.Original.StructureMeme;
+            if (structure != null)
+            {
+                summary.PrimaryMemeCards.Add(structure);
+            }
+            return;
+        }
+
+        if (selected?.Kind != ReformObjectKind.Meme)
+        {
+            return;
+        }
+
+        MemeDef? meme = session.Working.memes
+            .Concat(session.Original.memes)
+            .FirstOrDefault(candidate => selected.Key == $"meme:{candidate.defName}");
+        if (meme != null)
+        {
+            summary.PrimaryMemeCards.Add(meme);
+        }
+    }
+
+    private static void AddPrimaryPreceptCards(
+        ReformSummary summary,
+        ReformObject? selected,
+        List<Precept> originalPrecepts,
+        List<Precept> workingPrecepts,
+        List<Precept> added,
+        List<Precept> removed)
+    {
+        if (selected == null || selected.Kind is ReformObjectKind.Meme or ReformObjectKind.Structure)
+        {
+            return;
+        }
+
+        // Prefer the post-change card. Fall back to the opening card when the
+        // deliberate action removed an object without replacing it.
+        summary.PrimaryPreceptCards.AddRange(added.Where(p => IsPrimaryPrecept(selected, p)));
+        if (summary.PrimaryPreceptCards.Count == 0)
+        {
+            foreach (Precept before in originalPrecepts.Where(p => IsPrimaryPrecept(selected, p)))
+            {
+                Precept? after = workingPrecepts.FirstOrDefault(p => p.Id == before.Id);
+                summary.PrimaryPreceptCards.Add(after ?? before);
+            }
+        }
+
+        if (summary.PrimaryPreceptCards.Count == 0)
+        {
+            summary.PrimaryPreceptCards.AddRange(removed.Where(p => IsPrimaryPrecept(selected, p)));
+        }
     }
 
     private static void AddPrimaryDetails(

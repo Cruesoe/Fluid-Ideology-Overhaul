@@ -1,8 +1,11 @@
+using System;
+using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.Sound;
 using FluidIdeologyOverhaul.Reform;
 
 namespace FluidIdeologyOverhaul.Patches;
@@ -44,14 +47,36 @@ internal static class ReformDialogPatches
         GUI.color = Color.white;
         Text.Font = GameFont.Small;
 
-        Rect resetRect = new Rect(inRect.xMax - 170f, inRect.y, 170f, 32f);
-        if (Widgets.ButtonText(resetRect, "FIO_DiscardChanges".Translate()))
+        if ((IdeoReformStage)StageField.GetValue(__instance) == IdeoReformStage.PreceptsNarrativeAndDeities)
         {
-            session.Reset();
-            object firstStage = System.Enum.Parse(StageField.FieldType, "MemesAndStyles");
-            StageField.SetValue(__instance, firstStage);
-            Messages.Message("FIO_ResetComplete".Translate(), MessageTypeDefOf.NeutralEvent, historical: false);
+            Rect resetRect = new Rect(
+                inRect.x + (inRect.width - Window.CloseButSize.x) / 2f,
+                inRect.height - Window.CloseButSize.y,
+                Window.CloseButSize.x,
+                Window.CloseButSize.y);
+            if (Widgets.ButtonText(resetRect, "ReformIdeoResetChanges".Translate()))
+            {
+                SoundDefOf.Tick_Low.PlayOneShotOnCamera();
+                session.Reset();
+                Messages.Message("FIO_ResetComplete".Translate(), MessageTypeDefOf.NeutralEvent, historical: false);
+            }
         }
+    }
+
+    [HarmonyPatch("ResetAllChooseOneChanges")]
+    [HarmonyPrefix]
+    private static bool ResetChangesPrefix(Dialog_ReformIdeo __instance)
+    {
+        if (!ReformSessions.TryGet(__instance, out ReformSession session))
+        {
+            return true;
+        }
+
+        // Take over RimWorld's existing centred Reset changes button. This restores
+        // the complete opening snapshot, including precepts and cosmetic edits.
+        session.Reset();
+        Messages.Message("FIO_ResetComplete".Translate(), MessageTypeDefOf.NeutralEvent, historical: false);
+        return false;
     }
 
     [HarmonyPatch(nameof(Dialog_ReformIdeo.AnyChooseOneChanges), MethodType.Getter)]
@@ -80,6 +105,93 @@ internal static class ReformDialogPatches
             // panel. Styles remain presentation-only even while a mechanical object is locked.
             __result = true;
         }
+    }
+}
+
+[HarmonyPatch(typeof(Widgets), nameof(Widgets.ButtonText),
+    new[] { typeof(Rect), typeof(string), typeof(bool), typeof(bool), typeof(bool), typeof(TextAnchor?) })]
+internal static class ReformEditorButtonPatch
+{
+    [HarmonyPrefix]
+    private static void Prefix(string label, ref bool active)
+    {
+        if (Find.WindowStack.currentlyDrawnWindow is not Dialog_ReformIdeo dialog
+            || !ReformSessions.TryGet(dialog, out ReformSession session))
+        {
+            return;
+        }
+
+        if (label == "Randomize".Translate() || label == "RandomizePrecepts".Translate())
+        {
+            active = false;
+            return;
+        }
+
+        if (session.SelectedObject != null && IsAddPreceptLabel(label))
+        {
+            active = false;
+        }
+    }
+
+    private static bool IsAddPreceptLabel(string label)
+    {
+        return IsAddLabel(label, "Precept".Translate())
+            || IsAddLabel(label, "Role".Translate())
+            || IsAddLabel(label, "Ritual".Translate())
+            || IsAddLabel(label, "IdeoBuilding".Translate())
+            || IsAddLabel(label, "IdeoRelic".Translate())
+            || IsAddLabel(label, "IdeoWeapon".Translate())
+            || IsAddLabel(label, "Animal".Translate())
+            || IsAddLabel(label, "Xenotype".Translate().ToString().UncapitalizeFirst())
+            || IsAddLabel(label, "IdeoApparelDesire".Translate());
+    }
+
+    private static bool IsAddLabel(string label, string objectLabel)
+    {
+        return label == ("AddPrecept".Translate(objectLabel).CapitalizeFirst() + "...");
+    }
+}
+
+/// <summary>
+/// A precept float menu can remain open while another reform object becomes locked.
+/// Stop its vanilla callback before it constructs a detached precept and attempts to
+/// configure it, which is unsafe after Ideo.AddPrecept has rejected the mutation.
+/// </summary>
+[HarmonyPatch(typeof(FloatMenuOption), nameof(FloatMenuOption.Chosen))]
+internal static class LockedPreceptMenuOptionPatch
+{
+    [HarmonyPrefix]
+    private static bool Prefix(FloatMenuOption __instance)
+    {
+        if (__instance.action == null || !IsIdeoAddPreceptAction(__instance.action.Method))
+        {
+            return true;
+        }
+
+        Dialog_ReformIdeo? dialog = Find.WindowStack.Windows.OfType<Dialog_ReformIdeo>().LastOrDefault();
+        if (dialog == null
+            || !ReformSessions.TryGet(dialog, out ReformSession session)
+            || session.SelectedObject == null)
+        {
+            return true;
+        }
+
+        Messages.Message(
+            "FIO_AnotherObjectLocked".Translate(session.SelectedObject.Label),
+            MessageTypeDefOf.RejectInput,
+            historical: false);
+        return false;
+    }
+
+    private static bool IsIdeoAddPreceptAction(MethodInfo method)
+    {
+        Type? type = method.DeclaringType;
+        while (type != null && type != typeof(IdeoUIUtility))
+        {
+            type = type.DeclaringType;
+        }
+
+        return type == typeof(IdeoUIUtility) && method.Name.Contains("AddPrecept");
     }
 }
 

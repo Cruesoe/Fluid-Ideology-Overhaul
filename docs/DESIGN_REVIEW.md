@@ -79,4 +79,4 @@ The installed Persistent Precepts Workshop payload (`2944765939`) confirms the r
 
 ## Repository setup choices
 
-The assembly and namespace are `FluidIdeologyOverhaul`; the package ID and Harmony ID are `cruesoe.fluidideologyoverhaul`. The project uses the shared sibling `_ModKit`, targets RimWorld 1.6 and .NET Framework 4.7.2, declares Ideology and Harmony dependencies, and ships only `About` plus the versioned assembly directory.
+The assembly and namespace are `FluidIdeologyOverhaul`; the package ID and Harmony ID are `cruesoe.fluidideologyoverhaul`. The self-contained project targets RimWorld 1.6 and .NET Framework 4.7.2, references the local RimWorld and Harmony installations, declares Ideology and Harmony dependencies, and ships only `About`, `Languages` and the versioned assembly directory.

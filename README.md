@@ -27,12 +27,9 @@ Vanilla development-point costs and progression remain unchanged in the first re
 dotnet build Source\FluidIdeologyOverhaul.csproj -c Debug
 ```
 
-The shared `_ModKit` copies the assembly to `1.6\Assemblies`. To deploy the allowlisted mod files to the local RimWorld installation:
-
-```powershell
-Import-Module ..\_ModKit\Modules\RimWorldModKit\RimWorldModKit.psd1
-Publish-Mod
-```
+The project references the local RimWorld and Harmony installations directly. Set
+`RIMWORLD_DIR` or `HARMONY_DLL` if they are not installed in their default Steam
+locations. A successful build copies the assembly to `1.6\Assemblies`.
 
 ## Design
 

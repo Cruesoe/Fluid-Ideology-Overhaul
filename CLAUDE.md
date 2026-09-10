@@ -1,2 +1,0 @@
-@../_ModKit/CLAUDE.md
-

@@ -94,13 +94,14 @@ internal static class ReformPreceptLockVisualPatch
         if (editMode != IdeoEditMode.Reform
             || !ReformSessions.TryGet(__instance.ideo, out ReformSession session)
             || session.SelectedObject == null
+            || session.CanConfigureMemeConsequence(__instance)
             || session.SelectedObject.Equals(ReformObject.ForPrecept(__instance)))
         {
             return;
         }
 
-        // Suppress vanilla's replace/remove menu for a different precept. The postfix
-        // installs a cosmetic-only click target over the otherwise normal box.
+        // Suppress every interaction with a different precept. Cosmetic changes are
+        // free only while their owning object is not locked by another reform choice.
         editMode = IdeoEditMode.None;
         __state = session;
     }
@@ -115,15 +116,5 @@ internal static class ReformPreceptLockVisualPatch
 
         Widgets.DrawRectFast(preceptBox, new Color(0.10f, 0.10f, 0.10f, 0.62f));
 
-        TooltipHandler.TipRegion(
-            preceptBox,
-            "FIO_LockedPreceptTip".Translate(__state.SelectedObject.Label));
-
-        if (Widgets.ButtonInvisible(preceptBox))
-        {
-            // Names and other presentation-only fields remain free. ApplyChanges still
-            // guards every mechanical field if this editor exposes one.
-            Find.WindowStack.Add(new Dialog_EditPrecept(__instance));
-        }
     }
 }
