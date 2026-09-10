@@ -1,37 +1,53 @@
 # Ideology Reformation
 
-A RimWorld 1.6 mod for **Ideology** that turns Fluid ideoligion reform into a deliberate, reviewable act instead of a free-for-all editor. Requires **Ideology** and **Harmony**.
+![Ideology Reformation preview](About/Preview.png)
 
-## What it changes
+**Let your colony's beliefs grow one tradition at a time.**
 
-In vanilla RimWorld, a Fluid ideoligion can be reformed by opening the ideoligion editor and changing almost anything at once, with little friction and no summary of what actually happened. Ideology Reformation replaces that with a guided reform session:
+Ideology Reformation makes Fluid ideoligion reforms smaller, clearer, and more meaningful. Instead of rebuilding the whole faith whenever a reform becomes available, you choose one part of it to change and review the result before committing.
 
-- **One deliberate change per reform.** Each reform is scoped to a single mechanical object — a precept, a ritual, a role, and so on. You can freely edit multiple *fields* of that same object (a ritual's date, reward and name together still count as one change), but you can't quietly change a precept and a role in the same sitting.
-- **Cosmetic edits stay free.** Names, descriptions, colors, icons and style categories can be adjusted inside a reform without spending your one deliberate change.
-- **Meme changes are handled separately.** Adding or removing a meme is its own kind of reform, and the precept changes memes force are shown as consequences of that choice, not hidden side effects.
-- **Automatic precept preservation.** When a meme change forces other precepts to shift, existing rituals, roles, buildings, relics, weapons, venerated animals and appearance choices are kept wherever they're still valid, instead of being silently reset.
-- **A review screen before anything is final.** Every reform ends with a summary of exactly what changed — primary change and any consequences — before you commit. You can go back and adjust, or cancel entirely with nothing touched.
-- **Reset really resets.** Backing out of a reform at any point restores the ideoligion to how it looked when you opened the editor, with development points untouched.
-- **Exactly-once commitment.** Confirming a reform spends development points through RimWorld's normal system exactly once — no double-spends, no free changes slipping through.
+## What changes?
 
-Fixed ideoligions are untouched by the mod; only Fluid ideoligions go through the reform session. Vanilla development-point costs are unchanged.
+Each earned reform lets you make **one deliberate mechanical change**, such as:
 
-## Tech-gated memes
+- adding or removing one meme;
+- changing one precept;
+- editing one ritual or specialist role; or
+- changing a structure, relic, or ideological building.
 
-Some memes can be restricted so they're only available to reform into once your colony has reached the right tech level or finished specific research (for example, `Darkness` requires Electricity, `Transhumanist` requires Biosculpting). This is fully data-driven — see [1.6/Patches/MemeAvailability.xml](1.6/Patches/MemeAvailability.xml) — so unlocks can be rebalanced or extended for other mods' memes without a code change.
+You can still edit several settings belonging to the same ritual or role. Names, descriptions, titles, icons, colours, and styles are cosmetic, so they can be updated freely during the reform.
 
-In mod settings, you can choose whether "current tech level" for these gates means your colony's actual tech level or the highest tech level you've researched into, whichever fits your game better.
+Once you choose a mechanical change, the other choices are locked for that reform. Reset the reform if you change your mind.
 
-## Installing
+## Safer, clearer reforms
 
-Subscribe via Steam Workshop, or place this mod's folder in your RimWorld `Mods` directory.
+- **Review before committing.** A summary shows your chosen change, any precepts affected by a meme, and your cosmetic edits.
+- **Go back and keep editing.** Leaving the review screen does not discard your work.
+- **Reset without consequences.** Resetting restores the ideoligion exactly as it was when the reform began.
+- **Preserve what still fits.** When a meme changes, the mod keeps existing precepts that remain valid instead of unnecessarily rebuilding the ideoligion.
+- **Keep vanilla progression.** Development-point costs and reform timing are unchanged.
 
-## Building from source
+For example, you can spend one reform adding a meme and rename and recolour your faith at the same time. Any required effects of that meme are shown separately in the review; they do not count as extra choices.
 
-```powershell
-dotnet build Source\IdeologyReformation.csproj -c Debug
-```
+## Research can unlock new beliefs
 
-The project references your local RimWorld and Harmony installations directly. Set `RIMWORLD_DIR` or `HARMONY_DLL` if they aren't in their default Steam locations. A successful build copies the assembly to `1.6\Assemblies`.
+Some memes now require the colony to discover the ideas behind them. For example:
 
-See [docs/DESIGN_REVIEW.md](docs/DESIGN_REVIEW.md) for the implementation design and [docs/PHASE1_TEST_PLAN.md](docs/PHASE1_TEST_PLAN.md) for the in-game test plan.
+| Meme | Requirement |
+| --- | --- |
+| Transhumanist | Biosculpting |
+| Shipborn | Orbital Tech *(Odyssey only)* |
+| VIE: Industrialism | Electricity |
+| VIE: Scrapper | Machining |
+| VIE: City builders | Complex furniture |
+| VIE: Healthcare | Hospital bed |
+| VIE: Progressive | Fabrication |
+| VIE: Mechanoid supremacy | Fabrication |
+| VIE: Fleshcrafting | Biosculpting |
+
+Locked memes are greyed out and show their requirement in a tooltip. Completed research also lists the meme it unlocks, and the reform-ready letter tells you when new beliefs have become available since your last reform.
+
+## Save support
+
+- Affects **Fluid ideoligions only**. Fixed ideoligions keep vanilla behaviour.
+- Can be added to an existing save. Existing ideoligions are not rerolled or revalidated when the mod is installed.
