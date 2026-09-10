@@ -1,6 +1,6 @@
 # Ideology Reformation
 
-![Ideology Reformation preview](About/Preview.png)
+![Fluid Ideology Overhaul preview](About/Preview.png)
 
 **Let your colony's beliefs grow one tradition at a time.**
 

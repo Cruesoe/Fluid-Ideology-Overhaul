@@ -17,6 +17,7 @@ public sealed class IdeologyReformationMod : Mod
     {
         Settings = GetSettings<IdeologyReformationSettings>();
         new Harmony(HarmonyId).PatchAll();
+        ReflectionSupport.EnsureFieldLookupsResolved();
         FluidIdeologyDescriptionPatch.ApplyAfterLoading();
 #if DEBUG
         Log.Message("[Ideology Reformation] Phase 1 loaded.");

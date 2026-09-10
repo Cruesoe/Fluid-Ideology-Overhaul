@@ -87,11 +87,11 @@ internal static class PreceptMutationPatches
 [HarmonyPatch(typeof(Dialog_EditPrecept), "ApplyChanges")]
 internal static class DetailedPreceptEditPatch
 {
-    private static readonly FieldInfo PreceptField = AccessTools.Field(typeof(Dialog_EditPrecept), "precept");
-    private static readonly FieldInfo NewAnytimeField = AccessTools.Field(typeof(Dialog_EditPrecept), "newCanStartAnytime");
-    private static readonly FieldInfo NewDateField = AccessTools.Field(typeof(Dialog_EditPrecept), "newTriggerDaysSinceStartOfYear");
-    private static readonly FieldInfo RewardField = AccessTools.Field(typeof(Dialog_EditPrecept), "selectedReward");
-    private static readonly FieldInfo ApparelField = AccessTools.Field(typeof(Dialog_EditPrecept), "apparelRequirements");
+    private static readonly FieldInfo PreceptField = ReflectionSupport.RequireField(typeof(Dialog_EditPrecept), "precept");
+    private static readonly FieldInfo NewAnytimeField = ReflectionSupport.RequireField(typeof(Dialog_EditPrecept), "newCanStartAnytime");
+    private static readonly FieldInfo NewDateField = ReflectionSupport.RequireField(typeof(Dialog_EditPrecept), "newTriggerDaysSinceStartOfYear");
+    private static readonly FieldInfo RewardField = ReflectionSupport.RequireField(typeof(Dialog_EditPrecept), "selectedReward");
+    private static readonly FieldInfo ApparelField = ReflectionSupport.RequireField(typeof(Dialog_EditPrecept), "apparelRequirements");
 
     [HarmonyPrefix]
     private static bool Prefix(Dialog_EditPrecept __instance)

@@ -13,8 +13,8 @@ namespace IdeologyReformation.Patches;
 [HarmonyPatch(typeof(Dialog_ReformIdeo))]
 internal static class ReformDialogPatches
 {
-    private static readonly FieldInfo WorkingIdeoField = AccessTools.Field(typeof(Dialog_ReformIdeo), "newIdeo");
-    private static readonly FieldInfo StageField = AccessTools.Field(typeof(Dialog_ReformIdeo), "stage");
+    private static readonly FieldInfo WorkingIdeoField = ReflectionSupport.RequireField(typeof(Dialog_ReformIdeo), "newIdeo");
+    private static readonly FieldInfo StageField = ReflectionSupport.RequireField(typeof(Dialog_ReformIdeo), "stage");
 
     [HarmonyPatch(MethodType.Constructor, typeof(Ideo))]
     [HarmonyPostfix]

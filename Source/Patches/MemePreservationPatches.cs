@@ -11,9 +11,9 @@ namespace IdeologyReformation.Patches;
 [HarmonyPatch(typeof(Dialog_ChooseMemes), "DoAcceptChanges")]
 internal static class MemePreservationPatches
 {
-    private static readonly FieldInfo IdeoField = AccessTools.Field(typeof(Dialog_ChooseMemes), "ideo");
-    private static readonly FieldInfo NewMemesField = AccessTools.Field(typeof(Dialog_ChooseMemes), "newMemes");
-    private static readonly FieldInfo ReformingField = AccessTools.Field(typeof(Dialog_ChooseMemes), "reformingIdeo");
+    private static readonly FieldInfo IdeoField = ReflectionSupport.RequireField(typeof(Dialog_ChooseMemes), "ideo");
+    private static readonly FieldInfo NewMemesField = ReflectionSupport.RequireField(typeof(Dialog_ChooseMemes), "newMemes");
+    private static readonly FieldInfo ReformingField = ReflectionSupport.RequireField(typeof(Dialog_ChooseMemes), "reformingIdeo");
 
     [HarmonyPrefix]
     private static bool Prefix(Dialog_ChooseMemes __instance, out CascadeState? __state)
