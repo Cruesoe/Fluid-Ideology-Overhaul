@@ -7,7 +7,6 @@ namespace FluidIdeologyOverhaul.Reform;
 
 internal sealed class ReformSummary
 {
-    public string Primary { get; private set; } = string.Empty;
     public List<string> PrimaryChanges { get; } = new();
     public List<string> Consequences { get; } = new();
     public List<MemeDef> PrimaryMemeCards { get; } = new();
@@ -15,18 +14,35 @@ internal sealed class ReformSummary
     public List<Precept> ConsequencePreceptCards { get; } = new();
     public List<Precept> PreceptCards { get; } = new();
     public List<string> CosmeticChanges { get; } = new();
+    public bool HasMechanicalObject { get; private set; }
 
-    public string PrimaryText => JoinSection(Primary, PrimaryChanges);
-    public string ConsequenceText => Consequences.Count == 0
-        ? "FIO_NoConsequences".Translate()
-        : BulletLines(Consequences);
     public string CosmeticText => BulletLines(CosmeticChanges);
+
+    // PrimaryChanges holds meme/structure lines when the primary object is a meme or
+    // structure change, or precept-field diff lines (ritual timing, apparel counts,
+    // relic material, etc.) otherwise, mutually exclusively depending on selected kind.
+    // Route each set of lines to the section that renders the matching cards.
+    public string MemeSectionDetailText => PrimaryMemeCards.Count > 0 ? BulletLines(PrimaryChanges) : string.Empty;
+
+    public string PreceptSectionDetailText
+    {
+        get
+        {
+            List<string> lines = new();
+            if (PrimaryMemeCards.Count == 0)
+            {
+                lines.AddRange(PrimaryChanges);
+            }
+            lines.AddRange(Consequences);
+            return BulletLines(lines);
+        }
+    }
 
     public static ReformSummary Build(ReformSession session)
     {
         ReformSummary summary = new ReformSummary
         {
-            Primary = session.SelectedObject?.Label ?? "FIO_CosmeticOnly".Translate()
+            HasMechanicalObject = session.SelectedObject != null
         };
 
         List<Precept> originalPrecepts = session.Original.PreceptsListForReading;
@@ -288,11 +304,6 @@ internal sealed class ReformSummary
         }
 
         return $"{firstLine}: {secondLine}";
-    }
-
-    private static string JoinSection(string firstLine, List<string> details)
-    {
-        return details.Count == 0 ? firstLine : firstLine + "\n" + BulletLines(details);
     }
 
     private static string BulletLines(IEnumerable<string> lines)
