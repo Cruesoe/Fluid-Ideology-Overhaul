@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>FluidIdeologyOverhaul</RootNamespace>
+    <AssemblyName>FluidIdeologyOverhaul</AssemblyName>
+    <Nullable>enable</Nullable>
+    <UnityModules>CoreModule;IMGUIModule;TextRenderingModule</UnityModules>
+  </PropertyGroup>
+</Project>
+

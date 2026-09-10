@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <FIO_Title>Fluid Ideology Overhaul</FIO_Title>
+  <FIO_PreservationMode>Preservation mode</FIO_PreservationMode>
+  <FIO_ModeVanilla>Vanilla cascades</FIO_ModeVanilla>
+  <FIO_ModePreserve>Preserve where possible</FIO_ModePreserve>
+  <FIO_ModeStrict>Strict preservation</FIO_ModeStrict>
+  <FIO_ModeVanillaTip>Use RimWorld's normal meme consequence handling.</FIO_ModeVanillaTip>
+  <FIO_ModePreserveTip>Restore existing ideology content when it remains valid after a meme change.</FIO_ModePreserveTip>
+  <FIO_ModeStrictTip>Reject a meme change if RimWorld reports that existing precepts must be removed.</FIO_ModeStrictTip>
+  <FIO_DevelopmentDiagnostics>Development diagnostics</FIO_DevelopmentDiagnostics>
+  <FIO_DevelopmentDiagnosticsTip>Log reform actions, locks, preservation decisions and commit guards for testing.</FIO_DevelopmentDiagnosticsTip>
+  <FIO_ActionAdd>add</FIO_ActionAdd>
+  <FIO_ActionRemove>remove</FIO_ActionRemove>
+  <FIO_ObjectMeme>Meme: {0} {1}</FIO_ObjectMeme>
+  <FIO_ObjectStructure>Structure: {0}</FIO_ObjectStructure>
+  <FIO_ObjectPrecept>Precept: {0}</FIO_ObjectPrecept>
+  <FIO_ObjectRitual>Ritual: {0}</FIO_ObjectRitual>
+  <FIO_ObjectRole>Role: {0}</FIO_ObjectRole>
+  <FIO_ObjectRelic>Relic: {0}</FIO_ObjectRelic>
+  <FIO_ObjectBuilding>Building: {0}</FIO_ObjectBuilding>
+  <FIO_AnotherObjectLocked>This reform is locked to {0}. Reset or confirm it before changing another mechanical object.</FIO_AnotherObjectLocked>
+  <FIO_OneMemeAtATime>Adding and removing memes are separate reforms. Choose exactly one meme change.</FIO_OneMemeAtATime>
+  <FIO_StrictRejected>Strict preservation rejected this meme change because it requires removing:\n\n{0}</FIO_StrictRejected>
+  <FIO_NoObjectSelected>No mechanical reform object selected. Cosmetic edits remain free.</FIO_NoObjectSelected>
+  <FIO_SelectedObject>Selected reform object: {0}. Other mechanical objects are locked.</FIO_SelectedObject>
+  <FIO_LockedMemeTip>This reform is locked to {0}. This meme cannot be added or removed until the reform is reset or confirmed.</FIO_LockedMemeTip>
+  <FIO_LockedPreceptTip>This reform is locked to {0}. Mechanical changes to this precept are unavailable. Click to edit its name or other presentation-only details.</FIO_LockedPreceptTip>
+  <FIO_DiscardChanges>Reset / discard changes</FIO_DiscardChanges>
+  <FIO_ResetComplete>All reform changes were discarded.</FIO_ResetComplete>
+  <FIO_ReviewTitle>Review ideology reform</FIO_ReviewTitle>
+  <FIO_PrimaryChange>Primary deliberate change</FIO_PrimaryChange>
+  <FIO_Consequences>Consequential required changes</FIO_Consequences>
+  <FIO_NoConsequences>No additional ideology objects will be added or removed.</FIO_NoConsequences>
+  <FIO_AddedItem>Added: {0}</FIO_AddedItem>
+  <FIO_RemovedItem>Removed: {0}</FIO_RemovedItem>
+  <FIO_Preserved>Preserved content</FIO_Preserved>
+  <FIO_PreservedCount>{0} of {1} existing precepts are retained.</FIO_PreservedCount>
+  <FIO_CosmeticOnly>Cosmetic changes only</FIO_CosmeticOnly>
+  <FIO_CosmeticChanges>Cosmetic changes</FIO_CosmeticChanges>
+  <FIO_CosmeticChangesPresent>Presentation-only changes are included without selecting another mechanical object.</FIO_CosmeticChangesPresent>
+  <FIO_ConsumesReform>Confirming consumes the currently available reform and uses RimWorld's normal development-point cost.</FIO_ConsumesReform>
+  <FIO_GoBack>Go back</FIO_GoBack>
+  <FIO_ConfirmReform>Confirm reform</FIO_ConfirmReform>
+  <FIO_SelectedObjectEdited>The selected object's mechanical configuration was edited.</FIO_SelectedObjectEdited>
+  <FIO_AddedMeme>Added meme: {0}</FIO_AddedMeme>
+  <FIO_RemovedMeme>Removed meme: {0}</FIO_RemovedMeme>
+  <FIO_ChangedFrom>From: {0}</FIO_ChangedFrom>
+  <FIO_ChangedTo>To: {0}</FIO_ChangedTo>
+  <FIO_ChangedFromTo>Changed from {0} to {1}</FIO_ChangedFromTo>
+  <FIO_RitualTiming>Starting condition: {0} to {1}</FIO_RitualTiming>
+  <FIO_RitualDate>Scheduled day: {0} to {1}</FIO_RitualDate>
+  <FIO_RitualReward>Attached reward: {0} to {1}</FIO_RitualReward>
+  <FIO_Anytime>Anytime</FIO_Anytime>
+  <FIO_Scheduled>Scheduled date</FIO_Scheduled>
+  <FIO_ApparelRequirements>Apparel requirements: {0} to {1}</FIO_ApparelRequirements>
+  <FIO_RelicMaterial>Relic material: {0} to {1}</FIO_RelicMaterial>
+  <FIO_NameChanged>Name: {0} to {1}</FIO_NameChanged>
+  <FIO_DescriptionChanged>Description edited</FIO_DescriptionChanged>
+  <FIO_NarrativeTermsChanged>Adjective or member name edited</FIO_NarrativeTermsChanged>
+  <FIO_IconColorChanged>Icon or colour edited</FIO_IconColorChanged>
+  <FIO_LeaderTitlesChanged>Leader titles edited</FIO_LeaderTitlesChanged>
+  <FIO_StylesChanged>Ideology styles edited</FIO_StylesChanged>
+  <FIO_PreceptNameChanged>Renamed {0} to {1}</FIO_PreceptNameChanged>
+  <FIO_LetterTextReformIdeo>You have enough development points to reform {0}!\n\nFluid Ideology Overhaul permits one deliberate mechanical ideology object in this reform. You may add or remove one meme, change the structure, change one precept, or edit one ritual or role. Multiple mechanical fields belonging to that same ritual or role may be edited together.\n\nNames, descriptions, colours, icons, style categories and other presentation-only changes are free while this earned reform is open. Automatic consequences required by the selected meme do not count as additional deliberate changes and will be shown separately.\n\nBefore development points are spent, you will receive a review of the primary change, its consequences and preserved content. You may return to editing or reset all changes without spending the reform.\n\nTo begin, open this ideoligion in the Ideoligions tab.</FIO_LetterTextReformIdeo>
+</LanguageData>

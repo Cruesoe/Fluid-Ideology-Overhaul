@@ -1,0 +1,8 @@
+<Project>
+  <Import Project="$(ModKitRoot)RimWorldMod.targets" Condition="'$(ModKitMissing)' != 'true'" />
+
+  <Target Name="ModKitMissing" BeforeTargets="Build;Restore" Condition="'$(ModKitMissing)' == 'true'">
+    <Error Text="_ModKit was not found at '$(ModKitRoot)'. Put it beside this repository or set RIMWORLD_MODKIT." />
+  </Target>
+</Project>
+

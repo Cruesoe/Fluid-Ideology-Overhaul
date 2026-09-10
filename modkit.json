@@ -1,0 +1,11 @@
+{
+  "name": "Fluid Ideology Overhaul",
+  "assemblyName": "FluidIdeologyOverhaul",
+  "workshopFolder": "Fluid Ideology Overhaul",
+  "gameVersion": "1.6",
+  "ship": [
+    "1.6",
+    "About",
+    "Languages"
+  ]
+}
