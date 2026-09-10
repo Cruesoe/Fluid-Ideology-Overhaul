@@ -19,7 +19,9 @@ public static class TechLevelService
 
     public static TechLevel? ActualTechLevel()
     {
-        return Faction.OfPlayer?.def.techLevel;
+        // The meme picker runs during new-game setup, before the world (and so the player
+        // faction) exists.
+        return Current.Game?.World == null ? null : Faction.OfPlayer?.def.techLevel;
     }
 
     public static TechLevel HighestResearchedTechLevel()

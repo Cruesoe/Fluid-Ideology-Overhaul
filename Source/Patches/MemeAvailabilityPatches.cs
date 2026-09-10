@@ -1,33 +1,54 @@
 using HarmonyLib;
 using RimWorld;
+using UnityEngine;
+using Verse;
 using IdeologyReformation.Restrictions;
 
 namespace IdeologyReformation.Patches;
 
 /// <summary>
-/// Gates meme selectability (initial ideo creation, fluid ideo setup, and reform) behind
-/// <see cref="MemeAvailabilityExtension"/> where present. Restricted memes are simply absent
-/// from the picker grid, matching vanilla's own handling of hiddenInChooseMemes and
-/// faction/DLC-gated memes.
+/// Draws memes gated by <see cref="MemeAvailabilityExtension"/> as locked in the meme picker
+/// (initial ideo creation, fluid ideo setup, and reform): dimmed, inert to clicks, and carrying a
+/// tooltip naming the requirement. The tile stays in the grid so the requirement is discoverable
+/// rather than the meme silently not existing.
 /// </summary>
-[HarmonyPatch(typeof(Dialog_ChooseMemes), "CanUseMeme")]
-internal static class MemeAvailabilityPatch
+[HarmonyPatch(typeof(Dialog_ChooseMemes), "DrawMeme")]
+internal static class MemeLockVisualPatch
 {
-    [HarmonyPostfix]
-    private static void Postfix(MemeDef meme, ref bool __result)
+    [HarmonyPrefix]
+    private static void Prefix(MemeDef meme, Rect memeBox, out string? __state)
     {
-        if (__result && !MemeAvailabilityUtility.IsMemeAvailable(meme))
+        __state = MemeAvailabilityUtility.LockedReason(meme);
+        if (__state == null)
         {
-            __result = false;
+            return;
         }
+
+        // Consume the press before vanilla's own ButtonInvisible can select the meme.
+        if (Event.current.type == EventType.MouseDown && Mouse.IsOver(memeBox))
+        {
+            Messages.Message(__state, MessageTypeDefOf.RejectInput, historical: false);
+            Event.current.Use();
+        }
+    }
+
+    [HarmonyPostfix]
+    private static void Postfix(Rect memeBox, string? __state)
+    {
+        if (__state == null)
+        {
+            return;
+        }
+
+        Widgets.DrawRectFast(memeBox, new Color(0.10f, 0.10f, 0.10f, 0.62f));
+        TooltipHandler.TipRegion(memeBox, __state);
     }
 }
 
 /// <summary>
 /// Applies the same gate to <see cref="IdeoUtility"/>'s random meme generation. Vanilla builds
-/// starting-scenario ideoligions and the "Randomize" button through this path (never through
-/// <see cref="Dialog_ChooseMemes.CanUseMeme"/>), so without this patch a restricted meme could
-/// still appear on a freshly generated ideoligion.
+/// starting-scenario ideoligions and the "Randomize" button through this path, so without this
+/// patch a locked meme could still be rolled onto a freshly generated ideoligion.
 /// </summary>
 [HarmonyPatch(typeof(IdeoUtility), "CanAdd")]
 internal static class MemeAvailabilityRandomizationPatch

@@ -20,6 +20,8 @@
   <FIO_NoObjectSelected>No mechanical reform object selected. Cosmetic edits remain free.</FIO_NoObjectSelected>
   <FIO_SelectedObject>Selected reform object: {0}. Other deliberate objects are locked.</FIO_SelectedObject>
   <FIO_LockedMemeTip>This reform is locked to {0}. This meme cannot be added or removed until the reform is reset or confirmed.</FIO_LockedMemeTip>
+  <FIO_MemeLockedResearch>Locked until researched: {0}.</FIO_MemeLockedResearch>
+  <FIO_MemeLockedTechLevel>Locked until the colony reaches {0} tech level.</FIO_MemeLockedTechLevel>
   <FIO_ResetComplete>All reform changes were discarded.</FIO_ResetComplete>
   <FIO_ReviewTitle>Review ideology reform</FIO_ReviewTitle>
   <FIO_PrimaryChange>Memes changed</FIO_PrimaryChange>

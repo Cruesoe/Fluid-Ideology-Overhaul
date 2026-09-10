@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  Filenames must stay unique across these folders. RimWorld keys mod content by path
+  relative to the load folder and keeps only the highest-priority match, so a file that
+  repeats a name used by an earlier folder silently replaces it instead of adding to it.
+-->
 <loadFolders>
   <v1.6>
     <li>1.6</li>
