@@ -33,7 +33,7 @@ internal static class ReformAvailableLetterPatch
             string newMemesText = BuildNewlyAvailableMemesText();
             Find.LetterStack.ReceiveLetter(
                 "LetterLabelReformIdeo".Translate(),
-                "FIO_LetterTextReformIdeo".Translate(__instance.ideo, newMemesText),
+                "FIO_LetterTextReformIdeo".Translate(__instance.ideo.name, newMemesText),
                 LetterDefOf.PositiveEvent);
         }
 

@@ -113,8 +113,10 @@ internal static class ReformDialogPatches
 internal static class ReformEditorButtonPatch
 {
     [HarmonyPrefix]
-    private static bool Prefix(string label, ref bool active, ref bool __result)
+    private static bool Prefix(string label, ref bool active, ref bool __result, out ReformSession? __state)
     {
+        __state = null;
+
         if (Find.WindowStack.currentlyDrawnWindow is not Dialog_ReformIdeo dialog
             || !ReformSessions.TryGet(dialog, out ReformSession session))
         {
@@ -133,9 +135,26 @@ internal static class ReformEditorButtonPatch
         if (session.SelectedObject != null && IsAddPreceptLabel(label))
         {
             active = false;
+            __state = session;
         }
 
         return true;
+    }
+
+    [HarmonyPostfix]
+    private static void Postfix(Rect rect, ReformSession? __state)
+    {
+        // Widgets.ButtonText's "active" flag only blocks the click; it never dims the
+        // button's own draw call, so a disabled button still looks pressable. Overlay
+        // the same greyed-out treatment used elsewhere in this dialog (see
+        // ReformChoiceVisualPatches) to make the locked state visible.
+        if (__state == null || __state.SelectedObject == null)
+        {
+            return;
+        }
+
+        Widgets.DrawRectFast(rect, new Color(0.22f, 0.22f, 0.22f, 0.78f));
+        TooltipHandler.TipRegion(rect, "FIO_LockedMemeTip".Translate(__state.SelectedObject.Label));
     }
 
     private static bool IsAddPreceptLabel(string label)
