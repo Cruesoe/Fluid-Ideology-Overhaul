@@ -108,15 +108,49 @@ internal static class ReformDialogPatches
     }
 }
 
-[HarmonyPatch(typeof(Widgets), nameof(Widgets.ButtonText),
-    new[] { typeof(Rect), typeof(string), typeof(bool), typeof(bool), typeof(bool), typeof(TextAnchor?) })]
+[HarmonyPatch]
 internal static class ReformEditorButtonPatch
 {
-    [HarmonyPrefix]
-    private static bool Prefix(string label, ref bool active, ref bool __result)
+    private readonly struct ButtonDrawState
     {
-        if (Find.WindowStack.currentlyDrawnWindow is not Dialog_ReformIdeo dialog
-            || !ReformSessions.TryGet(dialog, out ReformSession session))
+        public readonly bool Tinted;
+        public readonly Color PreviousColor;
+
+        public ButtonDrawState(Color previousColor)
+        {
+            Tinted = true;
+            PreviousColor = previousColor;
+        }
+    }
+
+    [HarmonyTargetMethods]
+    private static System.Collections.Generic.IEnumerable<MethodBase> TargetMethods()
+    {
+        return AccessTools.GetDeclaredMethods(typeof(Widgets))
+            .Where(method => method.Name == nameof(Widgets.ButtonText));
+    }
+
+    [HarmonyPrefix]
+    private static bool Prefix(
+        string label,
+        ref bool active,
+        ref bool __result,
+        out ButtonDrawState __state)
+    {
+        __state = default;
+
+        // Meme selection is intended to be entirely deliberate. Suppress the
+        // vanilla control rather than merely drawing it disabled.
+        if (Find.WindowStack.currentlyDrawnWindow is Dialog_ChooseMemes
+            && label == "Randomize".Translate())
+        {
+            __result = false;
+            return false;
+        }
+
+        Dialog_ReformIdeo? dialog = Find.WindowStack.currentlyDrawnWindow as Dialog_ReformIdeo
+            ?? Find.WindowStack.Windows.OfType<Dialog_ReformIdeo>().LastOrDefault();
+        if (dialog == null || !ReformSessions.TryGet(dialog, out ReformSession session))
         {
             return true;
         }
@@ -130,12 +164,32 @@ internal static class ReformEditorButtonPatch
             return false;
         }
 
-        if (session.SelectedObject != null && IsAddPreceptLabel(label))
+        if (session.SelectedObject != null && IsDisabledAddAction(label))
         {
             active = false;
+            __state = new ButtonDrawState(GUI.color);
+            GUI.color = Color.gray;
         }
 
         return true;
+    }
+
+    [HarmonyPostfix]
+    private static void Postfix(ButtonDrawState __state)
+    {
+        if (__state.Tinted)
+        {
+            GUI.color = __state.PreviousColor;
+        }
+    }
+
+    private static bool IsDisabledAddAction(string label)
+    {
+        // Vanilla add controls consistently use an ellipsis. Retain the explicit
+        // translated matches, then cover grammar/capitalisation differences from
+        // other language packs with the dialog-scoped suffix check.
+        return IsAddPreceptLabel(label)
+            || label.TrimEnd().EndsWith("...", StringComparison.Ordinal);
     }
 
     private static bool IsAddPreceptLabel(string label)
@@ -153,7 +207,8 @@ internal static class ReformEditorButtonPatch
 
     private static bool IsAddLabel(string label, string objectLabel)
     {
-        return label == ("AddPrecept".Translate(objectLabel).CapitalizeFirst() + "...");
+        string expected = "AddPrecept".Translate(objectLabel).CapitalizeFirst() + "...";
+        return string.Equals(label, expected, StringComparison.OrdinalIgnoreCase);
     }
 }
 

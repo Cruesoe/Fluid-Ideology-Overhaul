@@ -35,5 +35,9 @@
   <FIO_LeaderTitlesChanged>Leader titles edited</FIO_LeaderTitlesChanged>
   <FIO_StylesChanged>Ideology styles edited</FIO_StylesChanged>
   <FIO_PreceptNameChanged>Renamed {0} to {1}</FIO_PreceptNameChanged>
-  <FIO_LetterTextReformIdeo>You have enough development points to reform {0}!\n\nFluid Ideology Overhaul permits one deliberate mechanical ideology object in this reform. You may add or remove one meme, change the structure, change one precept, or edit one ritual or role. Multiple mechanical fields belonging to that same ritual or role may be edited together.\n\nNames, descriptions, colours, icons, style categories and other presentation-only changes are free while this earned reform is open. Automatic consequences required by the selected meme do not count as additional deliberate changes and will be shown separately.\n\nBefore development points are spent, you will receive a review of the primary change and its consequences. You may return to editing or reset all changes without spending the reform.\n\nTo begin, open this ideoligion in the Ideoligions tab.</FIO_LetterTextReformIdeo>
+  <FIO_MemeRequiresResearch>Requires research: {0}</FIO_MemeRequiresResearch>
+  <FIO_ResearchUnlockMeme>Meme: {0}</FIO_ResearchUnlockMeme>
+  <FIO_LetterTextReformIdeo>{0}'s beliefs have ripened through shared trials and traditions. Its followers are ready to guide their ideoligion in a new direction.\n\nThey may now reshape one part of their faith, while renewing its names, symbols, colours, and styles as they wish.\n\n{1}\n\nOpen {0} in the ideoligions tab to begin the reform.</FIO_LetterTextReformIdeo>
+  <FIO_ReformLetterNewBeliefs>Recent discoveries have opened these new paths of belief:\n{0}</FIO_ReformLetterNewBeliefs>
+  <FIO_ReformLetterNoNewBeliefs>Recent discoveries have opened no new paths of belief since the last reform.</FIO_ReformLetterNoNewBeliefs>
 </LanguageData>

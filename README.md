@@ -16,7 +16,7 @@ Phase 1 is implemented:
 ## Planned delivery
 
 1. Controlled reform: implemented.
-2. Tech-gated memes: planned as a generic effective-tech service and data-driven per-meme requirements.
+2. Tech-gated memes: implemented with data-driven per-meme research requirements. Orbital tech unlocks Shipborn, and research entries list the memes they unlock.
 3. Compatibility: planned, beginning with Vanilla Ideology Expanded - Memes and Structures without requiring it when absent.
 
 Vanilla development-point costs and progression remain unchanged in the first release. Fixed ideoligions remain outside the mod's scope.

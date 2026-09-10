@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/IdeoPresetCategoryDef[defName="Fluid"]/description</xpath>
+    <value>
+      <description>Begin with one belief, then reshape your ideoligion one tradition at a time as the colony grows and discovers new ideas.</description>
+    </value>
+  </Operation>
+</Patch>

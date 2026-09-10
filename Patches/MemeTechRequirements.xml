@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/MemeDef[defName="Transhumanist"]</xpath>
+    <value>
+      <modExtensions>
+        <li Class="FluidIdeologyOverhaul.Tech.MemeTechRequirement">
+          <researchPrerequisites>
+            <li>Biosculpting</li>
+          </researchPrerequisites>
+        </li>
+      </modExtensions>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Odyssey</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/MemeDef[defName="Shipborn"]</xpath>
+      <value>
+        <modExtensions>
+          <li Class="FluidIdeologyOverhaul.Tech.MemeTechRequirement">
+            <researchPrerequisites>
+              <li>OrbitalTech</li>
+            </researchPrerequisites>
+          </li>
+        </modExtensions>
+      </value>
+    </match>
+  </Operation>
+</Patch>
