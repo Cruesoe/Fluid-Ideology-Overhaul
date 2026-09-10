@@ -25,32 +25,15 @@
   <FIO_NoObjectSelected>No mechanical reform object selected. Cosmetic edits remain free.</FIO_NoObjectSelected>
   <FIO_SelectedObject>Selected reform object: {0}. Other deliberate objects are locked.</FIO_SelectedObject>
   <FIO_LockedMemeTip>This reform is locked to {0}. This meme cannot be added or removed until the reform is reset or confirmed.</FIO_LockedMemeTip>
-  <FIO_LockedPreceptTip>This reform is locked to {0}. This precept cannot be edited until the reform is reset or confirmed.</FIO_LockedPreceptTip>
   <FIO_ResetComplete>All reform changes were discarded.</FIO_ResetComplete>
   <FIO_ReviewTitle>Review ideology reform</FIO_ReviewTitle>
   <FIO_PrimaryChange>Memes changed</FIO_PrimaryChange>
   <FIO_Consequences>Precepts changed</FIO_Consequences>
   <FIO_NoConsequences>No additional ideology objects will be added or removed.</FIO_NoConsequences>
-  <FIO_AddedItem>Added: {0}</FIO_AddedItem>
-  <FIO_RemovedItem>Removed: {0}</FIO_RemovedItem>
   <FIO_CosmeticOnly>Cosmetic changes only</FIO_CosmeticOnly>
   <FIO_CosmeticChanges>Cosmetic changes</FIO_CosmeticChanges>
-  <FIO_CosmeticChangesPresent>Presentation-only changes are included without selecting another mechanical object.</FIO_CosmeticChangesPresent>
   <FIO_GoBack>Go back</FIO_GoBack>
   <FIO_ConfirmReform>Confirm reform</FIO_ConfirmReform>
-  <FIO_SelectedObjectEdited>The selected object's mechanical configuration was edited.</FIO_SelectedObjectEdited>
-  <FIO_AddedMeme>Added meme: {0}</FIO_AddedMeme>
-  <FIO_RemovedMeme>Removed meme: {0}</FIO_RemovedMeme>
-  <FIO_ChangedFrom>From: {0}</FIO_ChangedFrom>
-  <FIO_ChangedTo>To: {0}</FIO_ChangedTo>
-  <FIO_ChangedFromTo>Changed from {0} to {1}</FIO_ChangedFromTo>
-  <FIO_RitualTiming>Starting condition: {0} to {1}</FIO_RitualTiming>
-  <FIO_RitualDate>Scheduled day: {0} to {1}</FIO_RitualDate>
-  <FIO_RitualReward>Attached reward: {0} to {1}</FIO_RitualReward>
-  <FIO_Anytime>Anytime</FIO_Anytime>
-  <FIO_Scheduled>Scheduled date</FIO_Scheduled>
-  <FIO_ApparelRequirements>Apparel requirements: {0} to {1}</FIO_ApparelRequirements>
-  <FIO_RelicMaterial>Relic material: {0} to {1}</FIO_RelicMaterial>
   <FIO_NameChanged>Name: {0} to {1}</FIO_NameChanged>
   <FIO_DescriptionChanged>Description edited</FIO_DescriptionChanged>
   <FIO_NarrativeTermsChanged>Adjective or member name edited</FIO_NarrativeTermsChanged>

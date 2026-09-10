@@ -113,24 +113,29 @@ internal static class ReformDialogPatches
 internal static class ReformEditorButtonPatch
 {
     [HarmonyPrefix]
-    private static void Prefix(string label, ref bool active)
+    private static bool Prefix(string label, ref bool active, ref bool __result)
     {
         if (Find.WindowStack.currentlyDrawnWindow is not Dialog_ReformIdeo dialog
             || !ReformSessions.TryGet(dialog, out ReformSession session))
         {
-            return;
+            return true;
         }
 
         if (label == "Randomize".Translate() || label == "RandomizePrecepts".Translate())
         {
-            active = false;
-            return;
+            // Randomizing memes or precepts wholesale is incompatible with the
+            // one-deliberate-object rule at any lock state, so remove the button
+            // outright instead of just disabling it.
+            __result = false;
+            return false;
         }
 
         if (session.SelectedObject != null && IsAddPreceptLabel(label))
         {
             active = false;
         }
+
+        return true;
     }
 
     private static bool IsAddPreceptLabel(string label)

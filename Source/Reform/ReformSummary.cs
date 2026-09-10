@@ -7,8 +7,6 @@ namespace FluidIdeologyOverhaul.Reform;
 
 internal sealed class ReformSummary
 {
-    public List<string> PrimaryChanges { get; } = new();
-    public List<string> Consequences { get; } = new();
     public List<MemeDef> PrimaryMemeCards { get; } = new();
     public List<Precept> PrimaryPreceptCards { get; } = new();
     public List<Precept> ConsequencePreceptCards { get; } = new();
@@ -17,26 +15,6 @@ internal sealed class ReformSummary
     public bool HasMechanicalObject { get; private set; }
 
     public string CosmeticText => BulletLines(CosmeticChanges);
-
-    // PrimaryChanges holds meme/structure lines when the primary object is a meme or
-    // structure change, or precept-field diff lines (ritual timing, apparel counts,
-    // relic material, etc.) otherwise, mutually exclusively depending on selected kind.
-    // Route each set of lines to the section that renders the matching cards.
-    public string MemeSectionDetailText => PrimaryMemeCards.Count > 0 ? BulletLines(PrimaryChanges) : string.Empty;
-
-    public string PreceptSectionDetailText
-    {
-        get
-        {
-            List<string> lines = new();
-            if (PrimaryMemeCards.Count == 0)
-            {
-                lines.AddRange(PrimaryChanges);
-            }
-            lines.AddRange(Consequences);
-            return BulletLines(lines);
-        }
-    }
 
     public static ReformSummary Build(ReformSession session)
     {
@@ -52,20 +30,16 @@ internal sealed class ReformSummary
         List<Precept> added = workingPrecepts.Where(p => !originalIds.Contains(p.Id)).ToList();
         List<Precept> removed = originalPrecepts.Where(p => !workingIds.Contains(p.Id)).ToList();
 
-        AddPrimaryDetails(summary, session, originalPrecepts, workingPrecepts, added, removed);
-
         AddPrimaryMemeCard(summary, session);
         AddPrimaryPreceptCards(summary, session.SelectedObject, originalPrecepts, workingPrecepts, added, removed);
 
         foreach (Precept precept in added.Where(p => !IsPrimaryPrecept(session.SelectedObject, p)))
         {
-            summary.Consequences.Add("FIO_AddedItem".Translate(Describe(precept)));
             summary.ConsequencePreceptCards.Add(precept);
         }
 
         foreach (Precept precept in removed.Where(p => !IsPrimaryPrecept(session.SelectedObject, p)))
         {
-            summary.Consequences.Add("FIO_RemovedItem".Translate(Describe(precept)));
             summary.ConsequencePreceptCards.Add(precept);
         }
 
@@ -155,103 +129,6 @@ internal sealed class ReformSummary
         }
     }
 
-    private static void AddPrimaryDetails(
-        ReformSummary summary,
-        ReformSession session,
-        List<Precept> originalPrecepts,
-        List<Precept> workingPrecepts,
-        List<Precept> added,
-        List<Precept> removed)
-    {
-        ReformObject? selected = session.SelectedObject;
-        if (selected == null)
-        {
-            return;
-        }
-
-        if (selected.Kind == ReformObjectKind.Meme)
-        {
-            foreach (MemeDef meme in session.Working.memes.Where(m => m.category == MemeCategory.Normal && !session.Original.memes.Contains(m)))
-            {
-                summary.PrimaryChanges.Add("FIO_AddedMeme".Translate(meme.LabelCap));
-            }
-            foreach (MemeDef meme in session.Original.memes.Where(m => m.category == MemeCategory.Normal && !session.Working.memes.Contains(m)))
-            {
-                summary.PrimaryChanges.Add("FIO_RemovedMeme".Translate(meme.LabelCap));
-            }
-        }
-        else if (selected.Kind == ReformObjectKind.Structure)
-        {
-            MemeDef? before = session.Original.StructureMeme;
-            MemeDef? after = session.Working.StructureMeme;
-            summary.PrimaryChanges.Add("FIO_ChangedFromTo".Translate(before?.LabelCap ?? "None".Translate(), after?.LabelCap ?? "None".Translate()));
-        }
-        else
-        {
-            foreach (Precept precept in removed.Where(p => IsPrimaryPrecept(selected, p)))
-            {
-                summary.PrimaryChanges.Add("FIO_ChangedFrom".Translate(Describe(precept)));
-            }
-            foreach (Precept precept in added.Where(p => IsPrimaryPrecept(selected, p)))
-            {
-                summary.PrimaryChanges.Add("FIO_ChangedTo".Translate(Describe(precept)));
-            }
-
-            foreach (Precept before in originalPrecepts.Where(p => IsPrimaryPrecept(selected, p)))
-            {
-                Precept? after = workingPrecepts.FirstOrDefault(p => p.Id == before.Id);
-                if (after != null)
-                {
-                    AddSamePreceptDetails(summary.PrimaryChanges, before, after);
-                }
-            }
-        }
-
-        if (summary.PrimaryChanges.Count == 0)
-        {
-            summary.PrimaryChanges.Add("FIO_SelectedObjectEdited".Translate());
-        }
-    }
-
-    private static void AddSamePreceptDetails(List<string> changes, Precept before, Precept after)
-    {
-        if (before is Precept_Ritual oldRitual && after is Precept_Ritual newRitual)
-        {
-            if (oldRitual.isAnytime != newRitual.isAnytime)
-            {
-                changes.Add("FIO_RitualTiming".Translate(
-                    oldRitual.isAnytime ? "FIO_Anytime".Translate() : "FIO_Scheduled".Translate(),
-                    newRitual.isAnytime ? "FIO_Anytime".Translate() : "FIO_Scheduled".Translate()));
-            }
-
-            int? oldDate = oldRitual.obligationTriggers.OfType<RitualObligationTrigger_Date>().FirstOrDefault()?.triggerDaysSinceStartOfYear;
-            int? newDate = newRitual.obligationTriggers.OfType<RitualObligationTrigger_Date>().FirstOrDefault()?.triggerDaysSinceStartOfYear;
-            if (oldDate != newDate)
-            {
-                changes.Add("FIO_RitualDate".Translate(oldDate?.ToString() ?? "-", newDate?.ToString() ?? "-"));
-            }
-
-            if (oldRitual.attachableOutcomeEffect != newRitual.attachableOutcomeEffect)
-            {
-                changes.Add("FIO_RitualReward".Translate(
-                    oldRitual.attachableOutcomeEffect?.LabelCap ?? "None".Translate(),
-                    newRitual.attachableOutcomeEffect?.LabelCap ?? "None".Translate()));
-            }
-        }
-
-        int oldApparel = before.ApparelRequirements?.Count() ?? 0;
-        int newApparel = after.ApparelRequirements?.Count() ?? 0;
-        if (oldApparel != newApparel)
-        {
-            changes.Add("FIO_ApparelRequirements".Translate(oldApparel, newApparel));
-        }
-
-        if (before is Precept_Relic oldRelic && after is Precept_Relic newRelic && oldRelic.stuff != newRelic.stuff)
-        {
-            changes.Add("FIO_RelicMaterial".Translate(oldRelic.stuff?.LabelCap ?? "-", newRelic.stuff?.LabelCap ?? "-"));
-        }
-    }
-
     private static void AddCosmeticDetails(ReformSummary summary, Ideo original, Ideo working)
     {
         if (original.name != working.name)
@@ -292,18 +169,6 @@ internal sealed class ReformSummary
     private static bool IsPrimaryPrecept(ReformObject? selected, Precept precept)
     {
         return selected != null && selected.Equals(ReformObject.ForPrecept(precept));
-    }
-
-    private static string Describe(Precept precept)
-    {
-        string firstLine = precept.UIInfoFirstLine;
-        string secondLine = precept.UIInfoSecondLine;
-        if (secondLine.NullOrEmpty() || firstLine == secondLine)
-        {
-            return firstLine.NullOrEmpty() ? precept.LabelCap : firstLine;
-        }
-
-        return $"{firstLine}: {secondLine}";
     }
 
     private static string BulletLines(IEnumerable<string> lines)

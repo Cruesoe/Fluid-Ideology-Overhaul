@@ -40,11 +40,10 @@ internal sealed class Dialog_ReformReview : Window
         Widgets.BeginScrollView(outRect, ref scrollPosition, viewRect);
         float curY = 0f;
         DrawSection(ref curY, viewWidth, "FIO_PrimaryChange".Translate(),
-            BodyOrNone(summary.PrimaryMemeCards, summary.MemeSectionDetailText,
-                summary.HasMechanicalObject ? "None".Translate() : "FIO_CosmeticOnly".Translate()),
+            EmptyStateText(summary.PrimaryMemeCards, summary.HasMechanicalObject ? "None".Translate() : "FIO_CosmeticOnly".Translate()),
             memeCards: summary.PrimaryMemeCards);
         DrawSection(ref curY, viewWidth, "FIO_Consequences".Translate(),
-            BodyOrNone(summary.PreceptCards, summary.PreceptSectionDetailText, "FIO_NoConsequences".Translate()),
+            EmptyStateText(summary.PreceptCards, "FIO_NoConsequences".Translate()),
             preceptCards: summary.PreceptCards);
         if (summary.CosmeticChanges.Count > 0)
         {
@@ -70,12 +69,11 @@ internal sealed class Dialog_ReformReview : Window
     {
         float height = SectionHeight(
                 width,
-                BodyOrNone(summary.PrimaryMemeCards, summary.MemeSectionDetailText,
-                summary.HasMechanicalObject ? "None".Translate() : "FIO_CosmeticOnly".Translate()),
+                EmptyStateText(summary.PrimaryMemeCards, summary.HasMechanicalObject ? "None".Translate() : "FIO_CosmeticOnly".Translate()),
                 memeCards: summary.PrimaryMemeCards)
             + SectionHeight(
                 width,
-                BodyOrNone(summary.PreceptCards, summary.PreceptSectionDetailText, "FIO_NoConsequences".Translate()),
+                EmptyStateText(summary.PreceptCards, "FIO_NoConsequences".Translate()),
                 preceptCards: summary.PreceptCards);
         if (summary.CosmeticChanges.Count > 0)
         {
@@ -85,14 +83,11 @@ internal sealed class Dialog_ReformReview : Window
         return height;
     }
 
-    private static string BodyOrNone<T>(IReadOnlyCollection<T> cards, string detailText, string emptyFallback)
+    // Cards already show what the primary/consequence objects are; only fall back to
+    // a text line when a section has nothing to show a card for.
+    private static string EmptyStateText<T>(IReadOnlyCollection<T> cards, string emptyFallback)
     {
-        if (cards.Count == 0 && detailText.NullOrEmpty())
-        {
-            return emptyFallback;
-        }
-
-        return detailText;
+        return cards.Count == 0 ? emptyFallback : string.Empty;
     }
 
     private static float SectionHeight(
@@ -104,8 +99,7 @@ internal sealed class Dialog_ReformReview : Window
         Text.Font = GameFont.Medium;
         float headingHeight = Text.CalcHeight("Ag", width);
         Text.Font = GameFont.Small;
-        bool hasCards = (preceptCards?.Count ?? 0) > 0 || (memeCards?.Count ?? 0) > 0;
-        float bodyHeight = body.NullOrEmpty() ? 0f : Text.CalcHeight(body, width) + (hasCards ? 6f : 0f);
+        float bodyHeight = body.NullOrEmpty() ? 0f : Text.CalcHeight(body, width);
         return headingHeight + 6f
             + PreceptCardsHeight(width, preceptCards)
             + MemeCardsHeight(width, memeCards)
@@ -124,15 +118,10 @@ internal sealed class Dialog_ReformReview : Window
         float headingHeight = Text.CalcHeight(heading, width);
         Widgets.Label(new Rect(0f, curY, width, headingHeight), heading);
         curY += headingHeight + 6f;
-        bool hasCards = (preceptCards?.Count ?? 0) > 0 || (memeCards?.Count ?? 0) > 0;
         DrawPreceptCards(ref curY, width, preceptCards);
         DrawMemeCards(ref curY, width, memeCards);
         if (!body.NullOrEmpty())
         {
-            if (hasCards)
-            {
-                curY += 6f;
-            }
             DrawBody(ref curY, width, body);
         }
         curY += SectionGap;
