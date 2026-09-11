@@ -1,0 +1,249 @@
+[h1]Ideology Reformation — Meme Unlock Guide[/h1]
+
+Ideology Reformation makes selected memes become available as your colony advances. This reference lists every supported meme and the requirement, if any, added by the mod.
+
+[list]
+[*][b]Research requirement[/b] — complete the named research project.
+[*][b]Tech-level requirement[/b] — advance the colony to at least that technology level.
+[*][b]Available immediately[/b] — Ideology Reformation adds no progression requirement. The relevant DLC or content mod must still be enabled.
+[/list]
+
+[i]Current coverage: 133 memes and structures from 11 supported sources; 44 have progression requirements and 89 are available immediately.[/i]
+
+[h2]Core Ideology[/h2]
+
+[b]Progression unlocks[/b]
+[list]
+[*][b]Animal personhood[/b] — Tech level: Neolithic
+[*][b]Blindsight[/b] — Tech level: Neolithic
+[*][b]Cannibal[/b] — Tech level: Neolithic
+[*][b]Collectivist[/b] — Tech level: Neolithic
+[*][b]Darkness[/b] — Research: Electricity
+[*][b]Female supremacy[/b] — Tech level: Neolithic
+[*][b]Flesh purity[/b] — Research: Prosthetics
+[*][b]Guilty[/b] — Tech level: Neolithic
+[*][b]High life[/b] — Research: Psychoid brewing
+[*][b]Human primacy[/b] — Research: Machining
+[*][b]Individualist[/b] — Tech level: Neolithic
+[*][b]Loyalist[/b] — Tech level: Neolithic
+[*][b]Male supremacy[/b] — Tech level: Neolithic
+[*][b]Nature primacy[/b] — Tech level: Neolithic
+[*][b]Nudism[/b] — Tech level: Neolithic
+[*][b]Pain is virtue[/b] — Tech level: Neolithic
+[*][b]Proselytizer[/b] — Tech level: Neolithic
+[*][b]Raider[/b] — Tech level: Neolithic
+[*][b]Rancher[/b] — Tech level: Neolithic
+[*][b]Supremacist[/b] — Tech level: Neolithic
+[*][b]Transhumanist[/b] — Research: Biosculpting
+[*][b]Tree connection[/b] — Research: Tree sowing
+[*][b]Tunneler[/b] — Research: Stonecutting
+[/list]
+
+[b]Structures — available immediately[/b]
+[list]
+[*]Abstract theist
+[*]Animist
+[*]Archist
+[*]Buddhist origin
+[*]Christian origin
+[*]Embodied theist
+[*]Hindu origin
+[*]Ideological
+[*]Islamic origin
+[/list]
+
+
+[h2]Biotech[/h2]
+
+[b]Progression unlocks[/b]
+[list]
+[*][b]Bloodfeeding[/b] — Research: Deathrest
+[/list]
+
+
+[h2]Anomaly[/h2]
+
+[b]Progression unlocks[/b]
+[list]
+[*][b]Inhuman[/b] — Research: Advanced psychic rituals
+[*][b]Ritualist[/b] — Research: Basic psychic rituals
+[/list]
+
+
+[h2]Odyssey[/h2]
+
+[b]Progression unlocks[/b]
+[list]
+[*][b]Shipborn[/b] — Research: Orbital technology
+[/list]
+
+
+[h2]Alpha Memes[/h2]
+
+[b]Progression unlocks[/b]
+[list]
+[*][b]Biological corruptors[/b] — Research: Tree sowing
+[*][b]Biological reconstructors[/b] — Research: Medicine production
+[*][b]Bulwark[/b] — Research: Smithing
+[*][b]Deep devotion[/b] — Research: Stonecutting (when Progression: Agriculture is not enabled)
+[*][b]Fertility[/b] — Research: Fertility procedures
+[*][b]Gauranlen supremacy[/b] — Research: Tree sowing
+[*][b]Gladiator[/b] — Research: Long blades
+[*][b]Sharpshooter[/b] — Research: Gunsmithing
+[*][b]Vampire hunting[/b] — Research: Deathrest
+[*][b]Water primacy[/b] — Research: Hydroponics
+[/list]
+
+[b]Available immediately[/b]
+[list]
+[*]Artist
+[*]Biological defilers
+[*]Coffee primacy
+[*]Cowboys
+[*]Deforestation
+[*]Epicurean
+[*]Iconoclast
+[*]Madness
+[*]Monastic
+[*]Naked truth
+[*]Pain is divine
+[*]Psychic vampirism
+[*]Sadist
+[*]Tea primacy
+[*]Vow of nonviolence
+[*]Youth
+[/list]
+
+[b]Structures — available immediately[/b]
+[list]
+[*]Alienism
+[*]Atheism
+[*]Corsair
+[*]Cubicism
+[*]Flesh cult
+[*]Jain origin
+[*]Jewish origin
+[*]Kemetic origin
+[*]Neolithic
+[*]Scavenger
+[*]Sikh origin
+[*]Steampunk revival
+[*]Void-touched
+[/list]
+
+
+[h2]Vanilla Factions Expanded - Medieval 2[/h2]
+
+[b]Structures — available immediately[/b]
+[list]
+[*]Norse
+[/list]
+
+
+[h2]Vanilla Quests Expanded - The Generator[/h2]
+
+[b]Available immediately[/b]
+[list]
+[*]Technophobia
+[/list]
+
+
+[h2]Vanilla Vehicles Expanded[/h2]
+
+[b]Available immediately[/b]
+[list]
+[*]Nauticals
+[*]Roadragers
+[*]Skyseekers
+[*]Travelers
+[/list]
+
+
+[h2]Vanilla Factions Expanded - Pirates[/h2]
+
+[b]Available immediately[/b]
+[list]
+[*]Pirate
+[/list]
+
+
+[h2]Vanilla Ideology Expanded - Memes and Structures[/h2]
+
+[b]Progression unlocks[/b]
+[list]
+[*][b]City builders[/b] — Research: Complex furniture
+[*][b]Fleshcrafting[/b] — Research: Biosculpting
+[*][b]Healthcare[/b] — Research: Hospital beds
+[*][b]Industrialism[/b] — Research: Electricity
+[*][b]Mechanoid supremacy[/b] — Research: Fabrication
+[*][b]Progressive[/b] — Research: Fabrication
+[*][b]Scrapper[/b] — Research: Machining
+[/list]
+
+[b]Available immediately[/b]
+[list]
+[*]Anonymity
+[*]Aristocratic
+[*]Astrology
+[*]Blood court
+[*]Bushido
+[*]Craft culture
+[*]Egalitarian
+[*]Elders
+[*]Emancipation
+[*]Exalted priesthood
+[*]Fire worship
+[*]Fishing culture
+[*]Gestalt
+[*]God emperor
+[*]Holy diseases
+[*]Insectoid supremacy
+[*]Isolationist
+[*]Light
+[*]Nationalist
+[*]Nomad
+[*]Pacifist
+[*]Party life
+[*]Psychic focus
+[*]Republic
+[*]Royal
+[*]Sweet teeth
+[*]Trader
+[*]Vegan
+[*]Violent conversion
+[/list]
+
+[b]Structures — available immediately[/b]
+[list]
+[*]Agnosticism
+[*]Authoritarian
+[*]Corporate origin
+[*]Cult of personality
+[*]Eldritch cult
+[*]Eschatologism
+[*]Esotericism
+[*]Hedonism
+[*]Omnism
+[*]Pantheism
+[*]Secular spirituality
+[*]Serketism
+[*]Shintaoist origin
+[/list]
+
+
+[h2]Vanilla Genetics Expanded[/h2]
+
+[b]Available immediately[/b]
+[list]
+[*]Careful geneticists
+[*]Mad scientists
+[/list]
+
+
+[h2]Notes[/h2]
+
+[list]
+[*]Structure choices are listed for completeness. They currently have no progression requirements.
+[*]Inhuman and Shipborn also retain the faction restrictions supplied by their original DLC definitions.
+[*]Requirements may change as Ideology Reformation and supported content mods are updated.
+[/list]

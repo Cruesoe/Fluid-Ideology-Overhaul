@@ -24,4 +24,7 @@ Requires Ideology and Harmony.</description>
       <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
     </li>
   </modDependencies>
+  <loadAfter>
+    <li>Sarg.AlphaMemes</li>
+  </loadAfter>
 </ModMetaData>

@@ -44,6 +44,16 @@ Some memes now require the colony to discover the ideas behind them. For example
 | VIE: Progressive | Fabrication |
 | VIE: Mechanoid supremacy | Fabrication |
 | VIE: Fleshcrafting | Biosculpting |
+| Alpha Memes: Gauranlen supremacy | Tree sowing |
+| Alpha Memes: Biological corruptors | Tree sowing |
+| Alpha Memes: Biological reconstructors | Medicine production |
+| Alpha Memes: Bulwark | Smithing |
+| Alpha Memes: Sharpshooter | Gunsmithing |
+| Alpha Memes: Gladiator | Long blades |
+| Alpha Memes: Deep devotion | Stonecutting |
+| Alpha Memes: Water primacy | Hydroponics |
+| Alpha Memes: Fertility | Fertility procedures *(Biotech only)* |
+| Alpha Memes: Vampire hunting | Deathrest *(Biotech only)* |
 
 Locked memes are greyed out and show their requirement in a tooltip. Completed research also lists the meme it unlocks, and the reform-ready letter tells you when new beliefs have become available since your last reform.
 

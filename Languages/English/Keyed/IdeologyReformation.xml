@@ -21,6 +21,7 @@
   <FIO_SelectedObject>Selected reform object: {0}. Other deliberate objects are locked.</FIO_SelectedObject>
   <FIO_LockedMemeTip>This reform is locked to {0}. This meme cannot be added or removed until the reform is reset or confirmed.</FIO_LockedMemeTip>
   <FIO_MemeLockedResearch>Locked until researched: {0}.</FIO_MemeLockedResearch>
+  <FIO_ResearchUnlockMeme>Meme: {0}</FIO_ResearchUnlockMeme>
   <FIO_MemeLockedTechLevel>Locked until the colony reaches {0} tech level.</FIO_MemeLockedTechLevel>
   <FIO_ResetComplete>All reform changes were discarded.</FIO_ResetComplete>
   <FIO_ReviewTitle>Review ideology reform</FIO_ReviewTitle>
@@ -38,6 +39,6 @@
   <FIO_LeaderTitlesChanged>Leader titles edited</FIO_LeaderTitlesChanged>
   <FIO_StylesChanged>Ideology styles edited</FIO_StylesChanged>
   <FIO_PreceptNameChanged>Renamed {0} to {1}</FIO_PreceptNameChanged>
-  <FIO_LetterTextReformIdeo>You have enough development points to reform {0}!\n\nIdeology Reformation permits one deliberate mechanical ideology object in this reform. You may add or remove one meme, change the structure, change one precept, or edit one ritual or role. Multiple mechanical fields belonging to that same ritual or role may be edited together.\n\nNames, descriptions, colours, icons, style categories and other presentation-only changes are free while this earned reform is open. Automatic consequences required by the selected meme do not count as additional deliberate changes and will be shown separately.\n\nBefore development points are spent, you will receive a review of the primary change and its consequences. You may return to editing or reset all changes without spending the reform.\n\nTo begin, open this ideoligion in the Ideoligions tab.{1}</FIO_LetterTextReformIdeo>
-  <FIO_NewlyAvailableMemes>\n\nNewly available memes since your last reform notice: {0}.</FIO_NewlyAvailableMemes>
+  <FIO_LetterTextReformIdeo>{0} is ready to reform!\n\nYou may make one gameplay change: add or remove a meme, change the structure or one precept, or edit one ritual or role. Settings belonging to the same ritual or role can be changed together.\n\nNames, descriptions, colours, icons and styles can be changed freely. Any changes required by your chosen meme won’t count against your reform.\n\nYou’ll review everything before spending your development points, and you can go back or reset your changes.\n\nOpen {0} in the Ideoligions tab to begin.{1}</FIO_LetterTextReformIdeo>
+  <FIO_NewlyAvailableMemes>\n\nNew memes available: {0}.</FIO_NewlyAvailableMemes>
 </LanguageData>
