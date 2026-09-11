@@ -28,13 +28,9 @@
     <xpath>Defs/MemeDef[defName="AM_Gladiator"]</xpath>
     <value><li Class="IdeologyReformation.Restrictions.MemeAvailabilityExtension"><requiredResearch><li>LongBlades</li></requiredResearch></li></value>
   </Operation>
-  <!-- Progression: Agriculture removes Devilstrand, one of this meme's starting research projects. -->
-  <Operation Class="PatchOperationFindMod">
-    <mods><li>Progression: Agriculture</li></mods>
-    <nomatch Class="PatchOperationAddModExtension">
-      <xpath>Defs/MemeDef[defName="AM_DeepDevotion"]</xpath>
-      <value><li Class="IdeologyReformation.Restrictions.MemeAvailabilityExtension"><requiredResearch><li>Stonecutting</li></requiredResearch></li></value>
-    </nomatch>
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/MemeDef[defName="AM_DeepDevotion"]</xpath>
+    <value><li Class="IdeologyReformation.Restrictions.MemeAvailabilityExtension"><requiredResearch><li>Stonecutting</li></requiredResearch></li></value>
   </Operation>
   <Operation Class="PatchOperationAddModExtension">
     <xpath>Defs/MemeDef[defName="AM_WaterPrimacy"]</xpath>
@@ -47,5 +43,9 @@
   <Operation Class="PatchOperationAddModExtension" MayRequire="Ludeon.RimWorld.Biotech">
     <xpath>Defs/MemeDef[defName="AM_VampireHunting"]</xpath>
     <value><li Class="IdeologyReformation.Restrictions.MemeAvailabilityExtension"><requiredResearch><li>Deathrest</li></requiredResearch></li></value>
+  </Operation>
+  <!-- Progression: Agriculture removes the Devilstrand research definition. -->
+  <Operation Class="PatchOperationRemove" MayRequire="ferny.progressionagriculture">
+    <xpath>Defs/MemeDef[defName="AM_DeepDevotion"]/startingResearchProjects/li[text()="Devilstrand"]</xpath>
   </Operation>
 </Patch>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Both genetics philosophies depend on the ability to create new hybrids. -->
+<Patch>
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/MemeDef[defName="GR_CarefulGeneticists" or defName="GR_MadScientists"]</xpath>
+    <value><li Class="IdeologyReformation.Restrictions.MemeAvailabilityExtension"><requiredResearch><li>GR_GeneticEngineering</li></requiredResearch></li></value>
+  </Operation>
+</Patch>

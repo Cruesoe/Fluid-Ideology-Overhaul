@@ -178,12 +178,14 @@ $researchLabels = @{
     AdvancedPsychicRituals = 'Advanced psychic rituals'
     BasicPsychicRituals    = 'Basic psychic rituals'
     Biosculpting           = 'Biosculpting'
+    Brewing                = 'Beer brewing'
     ComplexFurniture       = 'Complex furniture'
     Deathrest              = 'Deathrest'
     Electricity            = 'Electricity'
     Fabrication            = 'Fabrication'
     FertilityProcedures    = 'Fertility procedures'
     Gunsmithing            = 'Gunsmithing'
+    GR_GeneticEngineering  = 'Genetic creation'
     HospitalBed            = 'Hospital beds'
     Hydroponics            = 'Hydroponics'
     LongBlades             = 'Long blades'
@@ -195,6 +197,7 @@ $researchLabels = @{
     Smithing               = 'Smithing'
     Stonecutting           = 'Stonecutting'
     TreeSowing             = 'Tree sowing'
+    VVE_BasicVehicles      = 'Basic vehicles'
 }
 
 $unlockConditions = @{}

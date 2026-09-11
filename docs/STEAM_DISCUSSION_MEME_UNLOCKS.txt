@@ -8,7 +8,7 @@ Ideology Reformation makes selected memes become available as your colony advanc
 [*][b]Available immediately[/b] — Ideology Reformation adds no progression requirement. The relevant DLC or content mod must still be enabled.
 [/list]
 
-[i]Current coverage: 133 memes and structures from 11 supported sources; 44 have progression requirements and 89 are available immediately.[/i]
+[i]Current coverage: 133 memes and structures from 11 supported sources; 50 have progression requirements and 83 are available immediately.[/i]
 
 [h2]Core Ideology[/h2]
 
@@ -85,7 +85,7 @@ Ideology Reformation makes selected memes become available as your colony advanc
 [*][b]Biological corruptors[/b] — Research: Tree sowing
 [*][b]Biological reconstructors[/b] — Research: Medicine production
 [*][b]Bulwark[/b] — Research: Smithing
-[*][b]Deep devotion[/b] — Research: Stonecutting (when Progression: Agriculture is not enabled)
+[*][b]Deep devotion[/b] — Research: Stonecutting
 [*][b]Fertility[/b] — Research: Fertility procedures
 [*][b]Gauranlen supremacy[/b] — Research: Tree sowing
 [*][b]Gladiator[/b] — Research: Long blades
@@ -150,11 +150,15 @@ Ideology Reformation makes selected memes become available as your colony advanc
 
 [h2]Vanilla Vehicles Expanded[/h2]
 
+[b]Progression unlocks[/b]
+[list]
+[*][b]Nauticals[/b] — Research: Basic vehicles
+[*][b]Roadragers[/b] — Research: Basic vehicles
+[*][b]Skyseekers[/b] — Research: Basic vehicles
+[/list]
+
 [b]Available immediately[/b]
 [list]
-[*]Nauticals
-[*]Roadragers
-[*]Skyseekers
 [*]Travelers
 [/list]
 
@@ -176,6 +180,7 @@ Ideology Reformation makes selected memes become available as your colony advanc
 [*][b]Healthcare[/b] — Research: Hospital beds
 [*][b]Industrialism[/b] — Research: Electricity
 [*][b]Mechanoid supremacy[/b] — Research: Fabrication
+[*][b]Party life[/b] — Research: Beer brewing
 [*][b]Progressive[/b] — Research: Fabrication
 [*][b]Scrapper[/b] — Research: Machining
 [/list]
@@ -203,7 +208,6 @@ Ideology Reformation makes selected memes become available as your colony advanc
 [*]Nationalist
 [*]Nomad
 [*]Pacifist
-[*]Party life
 [*]Psychic focus
 [*]Republic
 [*]Royal
@@ -233,10 +237,10 @@ Ideology Reformation makes selected memes become available as your colony advanc
 
 [h2]Vanilla Genetics Expanded[/h2]
 
-[b]Available immediately[/b]
+[b]Progression unlocks[/b]
 [list]
-[*]Careful geneticists
-[*]Mad scientists
+[*][b]Careful geneticists[/b] — Research: Genetic creation
+[*][b]Mad scientists[/b] — Research: Genetic creation
 [/list]
 
 

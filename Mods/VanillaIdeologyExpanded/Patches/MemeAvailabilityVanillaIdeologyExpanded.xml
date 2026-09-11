@@ -24,4 +24,8 @@
     <xpath>Defs/MemeDef[defName="VME_Fleshcrafters"]</xpath>
     <value><li Class="IdeologyReformation.Restrictions.MemeAvailabilityExtension"><requiredResearch><li>Biosculpting</li></requiredResearch></li></value>
   </Operation>
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/MemeDef[defName="VME_PartyLife"]</xpath>
+    <value><li Class="IdeologyReformation.Restrictions.MemeAvailabilityExtension"><requiredResearch><li>Brewing</li></requiredResearch></li></value>
+  </Operation>
 </Patch>

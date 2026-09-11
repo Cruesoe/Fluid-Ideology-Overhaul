@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Vehicle-centered beliefs become available with the first constructible
+  land, sea and air vehicles. Travelers remains unrestricted because its
+  exploration and rough-living precepts do not depend on vehicles.
+-->
+<Patch>
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/MemeDef[defName="VVE_Nauticals" or defName="VVE_Roadragers" or defName="VVE_Skyseekers"]</xpath>
+    <value><li Class="IdeologyReformation.Restrictions.MemeAvailabilityExtension"><requiredResearch><li>VVE_BasicVehicles</li></requiredResearch></li></value>
+  </Operation>
+</Patch>

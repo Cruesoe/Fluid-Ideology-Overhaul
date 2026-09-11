@@ -26,5 +26,8 @@ Requires Ideology and Harmony.</description>
   </modDependencies>
   <loadAfter>
     <li>Sarg.AlphaMemes</li>
+    <li>VanillaExpanded.VMemesE</li>
+    <li>OskarPotocki.VanillaVehiclesExpanded</li>
+    <li>VanillaExpanded.VGeneticsE</li>
   </loadAfter>
 </ModMetaData>

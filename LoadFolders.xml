@@ -10,5 +10,7 @@
     <li>/</li>
     <li IfModActive="VanillaExpanded.VMemesE">Mods/VanillaIdeologyExpanded</li>
     <li IfModActive="Sarg.AlphaMemes">Mods/AlphaMemes</li>
+    <li IfModActive="OskarPotocki.VanillaVehiclesExpanded">Mods/VanillaVehiclesExpanded</li>
+    <li IfModActive="VanillaExpanded.VGeneticsE">Mods/VanillaGeneticsExpanded</li>
   </v1.6>
 </loadFolders>
